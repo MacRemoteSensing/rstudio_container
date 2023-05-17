@@ -32,8 +32,8 @@ RUN Rscript /installing_packages.R
 
 # Install RStudio - Consistent with Ubuntu version
 ## Refer to the repo : https://dailies.rstudio.com/rstudio/mountain-hydrangea/electron/jammy-amd64/
-RUN wget https://s3.amazonaws.com/rstudio-ide-build/electron/jammy/amd64/rstudio-2023.05.0-daily-366-amd64.deb
-RUN gdebi -n /rstudio-2023.05.0-daily-366-amd64.deb
+RUN wget https://download2.rstudio.org/server/jammy/amd64/rstudio-server-2023.03.1-446-amd64.deb
+RUN gdebi -n /rstudio-server-2023.03.1-446-amd64.deb
 
 # Keep alive
 #ENTRYPOINT ["tini", "--"]
