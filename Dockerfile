@@ -35,6 +35,17 @@ RUN Rscript /installing_packages.R
 RUN wget https://download2.rstudio.org/server/jammy/amd64/rstudio-server-2023.03.1-446-amd64.deb
 RUN gdebi -n /rstudio-server-2023.03.1-446-amd64.deb
 
+# Start Rstudio Server -- https://support.posit.co/hc/en-us/articles/200532327-Managing-RStudio-Workbench-RStudio-Server
+RUN rstudio-server stop
+RUN rstudio-server start
+
+# Create user for processing -- https://askubuntu.com/a/1377369/463917
+RUN useradd rstudio
+RUN passwd password
+
+RUN mkdir /home/rstudio
+RUN chown -R rstudio /home/rstudio
+
 # Keep alive
 #ENTRYPOINT ["tini", "--"]
 CMD [ "/bin/bash" ]
