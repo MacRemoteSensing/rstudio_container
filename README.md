@@ -4,10 +4,10 @@ Recipe to build a base docker container with RStudio Server, to be then run with
 
 
 Notes:
-- Unstable build!
-- Building R dependencies takes around 40 min
-- Mount port 8787 to localhost to be able to access the container
-  - Needs rstudio server start/restart in the beginning (despite the dockerfile start) 
+- stable build!
+- Building R dependencies is faster, due to the docker base image change
+- Mount port 8787 to localhost to be able to access the rstudio server. 
+  - Needs rstudio server start/restart in the beginning 
 
 ToDo list:
-- Check if package list is ok (based on Cheryl`s benchmark code)
+- Package install seems to work. Needs fullscale test.
