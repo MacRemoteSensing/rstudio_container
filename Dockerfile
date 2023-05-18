@@ -19,7 +19,7 @@ RUN apt-get upgrade --yes
 RUN apt-get install --yes r-base-dev gdebi-core
 
 # Install other dependencies needed for package build
-RUN apt-get install --yes cmake unixodbc-dev
+RUN apt-get install --yes cmake unixodbc-dev apt-utils
 
 #TODO: Implement R install from file
 # Install R packages from list
