@@ -39,9 +39,9 @@ RUN gdebi -n /rstudio-server-2023.03.1-446-amd64.deb
 RUN rstudio-server stop
 RUN rstudio-server start
 
-# Create user for processing -- https://askubuntu.com/a/1377369/463917
-RUN useradd rstudio
-RUN passwd password
+# Create user for processing
+## References: https://askubuntu.com/a/1377369/463917 | https://stackoverflow.com/a/49848507/4743714
+RUN useradd rstudio -p "$(openssl passwd -1 password)"
 
 RUN mkdir /home/rstudio
 RUN chown -R rstudio /home/rstudio
