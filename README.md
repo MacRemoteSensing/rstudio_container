@@ -4,7 +4,7 @@ Recipe to build a base docker container with RStudio Server, to be then run with
 
 
 Notes:
-- stable build!
+- Stable build on Docker, pretty broken when converting to Apptainer.
 - Building R dependencies is faster, due to the docker base image change
 - Mount port 8787 to localhost to be able to access the rstudio server. 
   - Needs rstudio server start/restart in the beginning 
