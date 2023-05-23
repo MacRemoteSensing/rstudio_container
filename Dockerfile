@@ -3,7 +3,7 @@ FROM rocker/geospatial:4.3.0
 
 # Install apt dependencies for Apptainer
 RUN apt-get update
-RUN apt-get install --yes htop systemd
+RUN apt-get install --yes htop
 
 # Install R packages from list - Binary build
 COPY installedpackages.csv /
