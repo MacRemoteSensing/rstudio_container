@@ -1,0 +1,2915 @@
+Deploying '<unknown> Dockerfile: Dockerfile'…
+Building image…
+Preparing build context archive…
+[==================================================>]168/168 files
+Done
+
+Sending build context to Docker daemon…
+[==================================================>] 102,5kB
+Done
+
+Step 1/7 : FROM rocker/geospatial:4.3.0
+4.3.0: Pulling from rocker/geospatial
+dbf6a9befcde: Pull complete
+217d63d1d724: Pull complete
+3708536563ca: Pull complete
+2c6ea4ca9e69: Pull complete
+81acad82b1c8: Pull complete
+60f7d8b6ad61: Pull complete
+ae0d911bd170: Pull complete
+277d92ae60fb: Pull complete
+d7255bd380f3: Pull complete
+359797b66c05: Pull complete
+ef2a2702991e: Pull complete
+Digest: sha256:c4c8e0a9b6963227a301b83a02c8d25f359b09c839e6246ecc0da7f135882174
+Status: Downloaded newer image for rocker/geospatial:4.3.0
+ ---> 7fef1d1b7e4e
+Step 2/7 : RUN apt-get update
+ ---> Running in 0a4277a2b5da
+Get:1 http://archive.ubuntu.com/ubuntu jammy InRelease [270 kB]
+Get:2 http://security.ubuntu.com/ubuntu jammy-security InRelease [110 kB]
+Get:3 http://archive.ubuntu.com/ubuntu jammy-updates InRelease [119 kB]
+Get:4 http://archive.ubuntu.com/ubuntu jammy-backports InRelease [108 kB]
+Get:5 http://archive.ubuntu.com/ubuntu jammy/universe amd64 Packages [17.5 MB]
+Get:6 http://security.ubuntu.com/ubuntu jammy-security/universe amd64 Packages [920 kB]
+Get:7 http://archive.ubuntu.com/ubuntu jammy/multiverse amd64 Packages [266 kB]
+Get:8 http://archive.ubuntu.com/ubuntu jammy/restricted amd64 Packages [164 kB]
+Get:9 http://archive.ubuntu.com/ubuntu jammy/main amd64 Packages [1,792 kB]
+Get:10 http://archive.ubuntu.com/ubuntu jammy-updates/multiverse amd64 Packages [42.2 kB]
+Get:11 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 Packages [776 kB]
+Get:12 http://archive.ubuntu.com/ubuntu jammy-updates/restricted amd64 Packages [336 kB]
+Get:13 http://archive.ubuntu.com/ubuntu jammy-updates/universe amd64 Packages [1,158 kB]
+Get:14 http://archive.ubuntu.com/ubuntu jammy-backports/universe amd64 Packages [27.0 kB]
+Get:15 http://archive.ubuntu.com/ubuntu jammy-backports/main amd64 Packages [49.4 kB]
+Get:16 http://security.ubuntu.com/ubuntu jammy-security/restricted amd64 Packages [336 kB]
+Get:17 http://security.ubuntu.com/ubuntu jammy-security/main amd64 Packages [497 kB]
+Get:18 http://security.ubuntu.com/ubuntu jammy-security/multiverse amd64 Packages [36.3 kB]
+Fetched 24.5 MB in 2s (16.2 MB/s)
+Reading package lists...
+Removing intermediate container 0a4277a2b5da
+ ---> d62e36ca239a
+Step 3/7 : RUN apt-get install --yes htop
+ ---> Running in 7061b084cc93
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  libnl-genl-3-200
+Suggested packages:
+  lm-sensors lsof strace
+The following NEW packages will be installed:
+  htop libnl-genl-3-200
+0 upgraded, 2 newly installed, 0 to remove and 37 not upgraded.
+Need to get 140 kB of archives.
+After this operation, 404 kB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu jammy/main amd64 libnl-genl-3-200 amd64 3.5.0-0.1 [12.4 kB]
+Get:2 http://archive.ubuntu.com/ubuntu jammy/main amd64 htop amd64 3.0.5-7build2 [128 kB]
+debconf: delaying package configuration, since apt-utils is not installed
+Fetched 140 kB in 0s (296 kB/s)
+Selecting previously unselected package libnl-genl-3-200:amd64.
+(Reading database ... 65073 files and directories currently installed.)
+Preparing to unpack .../libnl-genl-3-200_3.5.0-0.1_amd64.deb ...
+Unpacking libnl-genl-3-200:amd64 (3.5.0-0.1) ...
+Selecting previously unselected package htop.
+Preparing to unpack .../htop_3.0.5-7build2_amd64.deb ...
+Unpacking htop (3.0.5-7build2) ...
+Setting up libnl-genl-3-200:amd64 (3.5.0-0.1) ...
+Setting up htop (3.0.5-7build2) ...
+Processing triggers for libc-bin (2.35-0ubuntu3.1) ...
+Removing intermediate container 7061b084cc93
+ ---> 043695ce4b45
+Step 4/7 : COPY installedpackages.csv /
+ ---> c14d86495906
+Step 5/7 : COPY installing_packages.R /
+ ---> fe1dcdcadc8b
+Step 6/7 : RUN Rscript /installing_packages.R
+ ---> Running in 885dbb60cac0
+Installing packages into ‘/usr/local/lib/R/site-library’
+(as ‘lib’ is unspecified)
+also installing the dependencies ‘shape’, ‘diagram’
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/shape_1.4.6.tar.gz'
+Content type 'binary/octet-stream' length 784187 bytes (765 KB)
+==================================================
+downloaded 765 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/diagram_1.6.5.tar.gz'
+Content type 'binary/octet-stream' length 676505 bytes (660 KB)
+==================================================
+downloaded 660 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/abind_1.4-5.tar.gz'
+Content type 'binary/octet-stream' length 61357 bytes (59 KB)
+==================================================
+downloaded 59 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/alphavantager_0.1.3.tar.gz'
+Content type 'binary/octet-stream' length 20575 bytes (20 KB)
+==================================================
+downloaded 20 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/anytime_0.3.9.tar.gz'
+Content type 'binary/octet-stream' length 404829 bytes (395 KB)
+==================================================
+downloaded 395 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/ash_1.0-15.tar.gz'
+Content type 'binary/octet-stream' length 25188 bytes (24 KB)
+==================================================
+downloaded 24 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/askpass_1.1.tar.gz'
+Content type 'binary/octet-stream' length 20134 bytes (19 KB)
+==================================================
+downloaded 19 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/assertthat_0.2.1.tar.gz'
+Content type 'binary/octet-stream' length 52457 bytes (51 KB)
+==================================================
+downloaded 51 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/backports_1.4.1.tar.gz'
+Content type 'binary/octet-stream' length 95020 bytes (92 KB)
+==================================================
+downloaded 92 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/base64enc_0.1-3.tar.gz'
+Content type 'binary/octet-stream' length 26080 bytes (25 KB)
+==================================================
+downloaded 25 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/bayestestR_0.13.1.tar.gz'
+Content type 'binary/octet-stream' length 1483349 bytes (1.4 MB)
+==================================================
+downloaded 1.4 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/BH_1.81.0-1.tar.gz'
+Content type 'binary/octet-stream' length 12940877 bytes (12.3 MB)
+==================================================
+downloaded 12.3 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/bigleaf_0.8.2.tar.gz'
+Content type 'binary/octet-stream' length 1034458 bytes (1010 KB)
+==================================================
+downloaded 1010 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/BiocManager_1.30.20.tar.gz'
+Content type 'binary/octet-stream' length 340300 bytes (332 KB)
+==================================================
+downloaded 332 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/bit_4.0.5.tar.gz'
+Content type 'binary/octet-stream' length 1130781 bytes (1.1 MB)
+==================================================
+downloaded 1.1 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/bit64_4.0.5.tar.gz'
+Content type 'binary/octet-stream' length 475413 bytes (464 KB)
+==================================================
+downloaded 464 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/bitops_1.0-7.tar.gz'
+Content type 'binary/octet-stream' length 24849 bytes (24 KB)
+==================================================
+downloaded 24 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/blob_1.2.4.tar.gz'
+Content type 'binary/octet-stream' length 45942 bytes (44 KB)
+==================================================
+downloaded 44 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/bookdown_0.34.tar.gz'
+Content type 'binary/octet-stream' length 1089792 bytes (1.0 MB)
+==================================================
+downloaded 1.0 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/boot_1.3-28.1.tar.gz'
+Content type 'binary/octet-stream' length 627072 bytes (612 KB)
+==================================================
+downloaded 612 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/Boruta_8.0.0.tar.gz'
+Content type 'binary/octet-stream' length 452768 bytes (442 KB)
+==================================================
+downloaded 442 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/brew_1.0-8.tar.gz'
+Content type 'binary/octet-stream' length 76412 bytes (74 KB)
+==================================================
+downloaded 74 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/brio_1.1.3.tar.gz'
+Content type 'binary/octet-stream' length 31920 bytes (31 KB)
+==================================================
+downloaded 31 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/broom_1.0.4.tar.gz'
+Content type 'binary/octet-stream' length 1852904 bytes (1.8 MB)
+==================================================
+downloaded 1.8 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/bslib_0.4.2.tar.gz'
+Content type 'binary/octet-stream' length 4802564 bytes (4.6 MB)
+==================================================
+downloaded 4.6 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/cachem_1.0.8.tar.gz'
+Content type 'binary/octet-stream' length 66186 bytes (64 KB)
+==================================================
+downloaded 64 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/callr_3.7.3.tar.gz'
+Content type 'binary/octet-stream' length 428283 bytes (418 KB)
+==================================================
+downloaded 418 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/caret_6.0-94.tar.gz'
+Content type 'binary/octet-stream' length 3574802 bytes (3.4 MB)
+==================================================
+downloaded 3.4 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/cellranger_1.1.0.tar.gz'
+Content type 'binary/octet-stream' length 100989 bytes (98 KB)
+==================================================
+downloaded 98 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/CircStats_0.2-6.tar.gz'
+Content type 'binary/octet-stream' length 173051 bytes (168 KB)
+==================================================
+downloaded 168 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/class_7.3-22.tar.gz'
+Content type 'binary/octet-stream' length 86013 bytes (83 KB)
+==================================================
+downloaded 83 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/classInt_0.4-9.tar.gz'
+Content type 'binary/octet-stream' length 496733 bytes (485 KB)
+==================================================
+downloaded 485 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/cli_3.6.1.tar.gz'
+Content type 'binary/octet-stream' length 1272637 bytes (1.2 MB)
+==================================================
+downloaded 1.2 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/clifro_3.2-5.tar.gz'
+Content type 'binary/octet-stream' length 910838 bytes (889 KB)
+==================================================
+downloaded 889 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/clipr_0.8.0.tar.gz'
+Content type 'binary/octet-stream' length 50154 bytes (48 KB)
+==================================================
+downloaded 48 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/clock_0.7.0.tar.gz'
+Content type 'binary/octet-stream' length 1863350 bytes (1.8 MB)
+==================================================
+downloaded 1.8 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/cluster_2.1.4.tar.gz'
+Content type 'binary/octet-stream' length 559197 bytes (546 KB)
+==================================================
+downloaded 546 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/ClusterR_1.3.1.tar.gz'
+Content type 'binary/octet-stream' length 1162793 bytes (1.1 MB)
+==================================================
+downloaded 1.1 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/codetools_0.2-19.tar.gz'
+Content type 'binary/octet-stream' length 88909 bytes (86 KB)
+==================================================
+downloaded 86 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/colorspace_2.1-0.tar.gz'
+Content type 'binary/octet-stream' length 2593417 bytes (2.5 MB)
+==================================================
+downloaded 2.5 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/colourpicker_1.2.0.tar.gz'
+Content type 'binary/octet-stream' length 1289559 bytes (1.2 MB)
+==================================================
+downloaded 1.2 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/commonmark_1.9.0.tar.gz'
+Content type 'binary/octet-stream' length 145795 bytes (142 KB)
+==================================================
+downloaded 142 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/confintr_1.0.1.tar.gz'
+Content type 'binary/octet-stream' length 166797 bytes (162 KB)
+==================================================
+downloaded 162 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/correlation_0.8.4.tar.gz'
+Content type 'binary/octet-stream' length 1243007 bytes (1.2 MB)
+==================================================
+downloaded 1.2 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/cowplot_1.1.1.tar.gz'
+Content type 'binary/octet-stream' length 1376741 bytes (1.3 MB)
+==================================================
+downloaded 1.3 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/cpp11_0.4.3.tar.gz'
+Content type 'binary/octet-stream' length 299364 bytes (292 KB)
+==================================================
+downloaded 292 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/crayon_1.5.2.tar.gz'
+Content type 'binary/octet-stream' length 159787 bytes (156 KB)
+==================================================
+downloaded 156 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/credentials_1.3.2.tar.gz'
+Content type 'binary/octet-stream' length 171989 bytes (167 KB)
+==================================================
+downloaded 167 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/crosstalk_1.2.0.tar.gz'
+Content type 'binary/octet-stream' length 403467 bytes (394 KB)
+==================================================
+downloaded 394 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/crul_1.4.0.tar.gz'
+Content type 'binary/octet-stream' length 642832 bytes (627 KB)
+==================================================
+downloaded 627 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/curl_5.0.0.tar.gz'
+Content type 'binary/octet-stream' length 730211 bytes (713 KB)
+==================================================
+downloaded 713 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/data.table_1.14.8.tar.gz'
+Content type 'binary/octet-stream' length 2126876 bytes (2.0 MB)
+==================================================
+downloaded 2.0 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/datawizard_0.7.1.tar.gz'
+Content type 'binary/octet-stream' length 1003759 bytes (980 KB)
+==================================================
+downloaded 980 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/DBI_1.1.3.tar.gz'
+Content type 'binary/octet-stream' length 759311 bytes (741 KB)
+==================================================
+downloaded 741 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/dbplyr_2.3.2.tar.gz'
+Content type 'binary/octet-stream' length 1115655 bytes (1.1 MB)
+==================================================
+downloaded 1.1 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/deldir_1.0-9.tar.gz'
+Content type 'binary/octet-stream' length 300771 bytes (293 KB)
+==================================================
+downloaded 293 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/DEoptimR_1.0-13.tar.gz'
+Content type 'binary/octet-stream' length 42491 bytes (41 KB)
+==================================================
+downloaded 41 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/desc_1.4.2.tar.gz'
+Content type 'binary/octet-stream' length 323924 bytes (316 KB)
+==================================================
+downloaded 316 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/deSolve_1.35.tar.gz'
+Content type 'binary/octet-stream' length 2301293 bytes (2.2 MB)
+==================================================
+downloaded 2.2 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/devtools_2.4.5.tar.gz'
+Content type 'binary/octet-stream' length 427389 bytes (417 KB)
+==================================================
+downloaded 417 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/diffobj_0.3.5.tar.gz'
+Content type 'binary/octet-stream' length 1006169 bytes (982 KB)
+==================================================
+downloaded 982 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/digest_0.6.31.tar.gz'
+Content type 'binary/octet-stream' length 197695 bytes (193 KB)
+==================================================
+downloaded 193 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/doParallel_1.0.17.tar.gz'
+Content type 'binary/octet-stream' length 187640 bytes (183 KB)
+==================================================
+downloaded 183 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/downlit_0.4.2.tar.gz'
+Content type 'binary/octet-stream' length 110859 bytes (108 KB)
+==================================================
+downloaded 108 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/dplyr_1.1.2.tar.gz'
+Content type 'binary/octet-stream' length 1463316 bytes (1.4 MB)
+==================================================
+downloaded 1.4 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/dtplyr_1.3.1.tar.gz'
+Content type 'binary/octet-stream' length 352454 bytes (344 KB)
+==================================================
+downloaded 344 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/e1071_1.7-13.tar.gz'
+Content type 'binary/octet-stream' length 578232 bytes (564 KB)
+==================================================
+downloaded 564 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/effectsize_0.8.3.tar.gz'
+Content type 'binary/octet-stream' length 709538 bytes (692 KB)
+==================================================
+downloaded 692 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/ellipsis_0.3.2.tar.gz'
+Content type 'binary/octet-stream' length 33571 bytes (32 KB)
+==================================================
+downloaded 32 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/emmeans_1.8.6.tar.gz'
+Content type 'binary/octet-stream' length 2132122 bytes (2.0 MB)
+==================================================
+downloaded 2.0 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/estimability_1.4.1.tar.gz'
+Content type 'binary/octet-stream' length 40535 bytes (39 KB)
+==================================================
+downloaded 39 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/evaluate_0.21.tar.gz'
+Content type 'binary/octet-stream' length 80564 bytes (78 KB)
+==================================================
+downloaded 78 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/fansi_1.0.4.tar.gz'
+Content type 'binary/octet-stream' length 306590 bytes (299 KB)
+==================================================
+downloaded 299 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/farver_2.1.1.tar.gz'
+Content type 'binary/octet-stream' length 1457375 bytes (1.4 MB)
+==================================================
+downloaded 1.4 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/fastmap_1.1.1.tar.gz'
+Content type 'binary/octet-stream' length 61808 bytes (60 KB)
+==================================================
+downloaded 60 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/fastmatrix_0.5.tar.gz'
+Content type 'binary/octet-stream' length 313008 bytes (305 KB)
+==================================================
+downloaded 305 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/fda_6.0.5.tar.gz'
+Content type 'binary/octet-stream' length 3593754 bytes (3.4 MB)
+==================================================
+downloaded 3.4 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/fda.usc_2.1.0.tar.gz'
+Content type 'binary/octet-stream' length 2897481 bytes (2.8 MB)
+==================================================
+downloaded 2.8 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/fds_1.8.tar.gz'
+Content type 'binary/octet-stream' length 4032744 bytes (3.8 MB)
+==================================================
+downloaded 3.8 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/FNN_1.1.3.2.tar.gz'
+Content type 'binary/octet-stream' length 125950 bytes (122 KB)
+==================================================
+downloaded 122 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/fontawesome_0.5.1.tar.gz'
+Content type 'binary/octet-stream' length 1357686 bytes (1.3 MB)
+==================================================
+downloaded 1.3 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/forcats_1.0.0.tar.gz'
+Content type 'binary/octet-stream' length 421625 bytes (411 KB)
+==================================================
+downloaded 411 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/foreach_1.5.2.tar.gz'
+Content type 'binary/octet-stream' length 138028 bytes (134 KB)
+==================================================
+downloaded 134 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/forecast_8.21.tar.gz'
+Content type 'binary/octet-stream' length 1571632 bytes (1.5 MB)
+==================================================
+downloaded 1.5 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/foreign_0.8-84.tar.gz'
+Content type 'binary/octet-stream' length 251206 bytes (245 KB)
+==================================================
+downloaded 245 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/fracdiff_1.5-2.tar.gz'
+Content type 'binary/octet-stream' length 96761 bytes (94 KB)
+==================================================
+downloaded 94 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/fs_1.6.2.tar.gz'
+Content type 'binary/octet-stream' length 286430 bytes (279 KB)
+==================================================
+downloaded 279 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/furrr_0.3.1.tar.gz'
+Content type 'binary/octet-stream' length 1017574 bytes (993 KB)
+==================================================
+downloaded 993 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/future_1.32.0.tar.gz'
+Content type 'binary/octet-stream' length 637502 bytes (622 KB)
+==================================================
+downloaded 622 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/future.apply_1.11.0.tar.gz'
+Content type 'binary/octet-stream' length 153057 bytes (149 KB)
+==================================================
+downloaded 149 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/gargle_1.4.0.tar.gz'
+Content type 'binary/octet-stream' length 720409 bytes (703 KB)
+==================================================
+downloaded 703 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/generics_0.1.3.tar.gz'
+Content type 'binary/octet-stream' length 76282 bytes (74 KB)
+==================================================
+downloaded 74 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/geojson_0.3.4.tar.gz'
+Content type 'binary/octet-stream' length 1111186 bytes (1.1 MB)
+==================================================
+downloaded 1.1 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/geojsonio_0.11.1.tar.gz'
+Content type 'binary/octet-stream' length 973291 bytes (950 KB)
+==================================================
+downloaded 950 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/geojsonsf_2.0.3.tar.gz'
+Content type 'binary/octet-stream' length 1688063 bytes (1.6 MB)
+==================================================
+downloaded 1.6 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/geometries_0.2.2.tar.gz'
+Content type 'binary/octet-stream' length 274156 bytes (267 KB)
+==================================================
+downloaded 267 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/gert_1.9.2.tar.gz'
+Content type 'binary/octet-stream' length 2842071 bytes (2.7 MB)
+==================================================
+downloaded 2.7 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/getPass_0.2-2.tar.gz'
+Content type 'binary/octet-stream' length 228919 bytes (223 KB)
+==================================================
+downloaded 223 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/gganimate_1.0.8.tar.gz'
+Content type 'binary/octet-stream' length 1262312 bytes (1.2 MB)
+==================================================
+downloaded 1.2 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/ggeffects_1.2.2.tar.gz'
+Content type 'binary/octet-stream' length 608199 bytes (593 KB)
+==================================================
+downloaded 593 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/ggExtra_0.10.0.tar.gz'
+Content type 'binary/octet-stream' length 354103 bytes (345 KB)
+==================================================
+downloaded 345 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/ggh4x_0.2.4.tar.gz'
+Content type 'binary/octet-stream' length 2018949 bytes (1.9 MB)
+==================================================
+downloaded 1.9 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/ggmap_3.0.2.tar.gz'
+Content type 'binary/octet-stream' length 4709245 bytes (4.5 MB)
+==================================================
+downloaded 4.5 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/ggplot2_3.4.2.tar.gz'
+Content type 'binary/octet-stream' length 4286745 bytes (4.1 MB)
+==================================================
+downloaded 4.1 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/ggpmisc_0.5.2.tar.gz'
+Content type 'binary/octet-stream' length 1468871 bytes (1.4 MB)
+==================================================
+downloaded 1.4 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/ggpp_0.5.2.tar.gz'
+Content type 'binary/octet-stream' length 1455843 bytes (1.4 MB)
+==================================================
+downloaded 1.4 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/ggridges_0.5.4.tar.gz'
+Content type 'binary/octet-stream' length 2236967 bytes (2.1 MB)
+==================================================
+downloaded 2.1 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/ggtext_0.1.2.tar.gz'
+Content type 'binary/octet-stream' length 1255995 bytes (1.2 MB)
+==================================================
+downloaded 1.2 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/gh_1.4.0.tar.gz'
+Content type 'binary/octet-stream' length 101768 bytes (99 KB)
+==================================================
+downloaded 99 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/gitcreds_0.1.2.tar.gz'
+Content type 'binary/octet-stream' length 95527 bytes (93 KB)
+==================================================
+downloaded 93 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/globals_0.16.2.tar.gz'
+Content type 'binary/octet-stream' length 104912 bytes (102 KB)
+==================================================
+downloaded 102 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/glue_1.6.2.tar.gz'
+Content type 'binary/octet-stream' length 146914 bytes (143 KB)
+==================================================
+downloaded 143 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/gmp_0.7-1.tar.gz'
+Content type 'binary/octet-stream' length 318352 bytes (310 KB)
+==================================================
+downloaded 310 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/googleAuthR_2.0.1.tar.gz'
+Content type 'binary/octet-stream' length 389810 bytes (380 KB)
+==================================================
+downloaded 380 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/googleCloudStorageR_0.7.0.tar.gz'
+Content type 'binary/octet-stream' length 211804 bytes (206 KB)
+==================================================
+downloaded 206 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/googledrive_2.1.0.tar.gz'
+Content type 'binary/octet-stream' length 1878477 bytes (1.8 MB)
+==================================================
+downloaded 1.8 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/googlesheets4_1.1.0.tar.gz'
+Content type 'binary/octet-stream' length 497814 bytes (486 KB)
+==================================================
+downloaded 486 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/gower_1.0.1.tar.gz'
+Content type 'binary/octet-stream' length 206177 bytes (201 KB)
+==================================================
+downloaded 201 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/greybox_1.0.8.tar.gz'
+Content type 'binary/octet-stream' length 3255662 bytes (3.1 MB)
+==================================================
+downloaded 3.1 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/gridExtra_2.3.tar.gz'
+Content type 'binary/octet-stream' length 1106992 bytes (1.1 MB)
+==================================================
+downloaded 1.1 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/gridtext_0.1.5.tar.gz'
+Content type 'binary/octet-stream' length 353532 bytes (345 KB)
+==================================================
+downloaded 345 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/gtable_0.3.3.tar.gz'
+Content type 'binary/octet-stream' length 215580 bytes (210 KB)
+==================================================
+downloaded 210 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/gtools_3.9.4.tar.gz'
+Content type 'binary/octet-stream' length 353531 bytes (345 KB)
+==================================================
+downloaded 345 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/hardhat_1.3.0.tar.gz'
+Content type 'binary/octet-stream' length 822703 bytes (803 KB)
+==================================================
+downloaded 803 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/haven_2.5.2.tar.gz'
+Content type 'binary/octet-stream' length 388605 bytes (379 KB)
+==================================================
+downloaded 379 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/hdf5r_1.3.8.tar.gz'
+Content type 'binary/octet-stream' length 1921247 bytes (1.8 MB)
+==================================================
+downloaded 1.8 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/hdrcde_3.4.tar.gz'
+Content type 'binary/octet-stream' length 215644 bytes (210 KB)
+==================================================
+downloaded 210 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/here_1.0.1.tar.gz'
+Content type 'binary/octet-stream' length 52848 bytes (51 KB)
+==================================================
+downloaded 51 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/hexbin_1.28.3.tar.gz'
+Content type 'binary/octet-stream' length 1599705 bytes (1.5 MB)
+==================================================
+downloaded 1.5 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/highr_0.10.tar.gz'
+Content type 'binary/octet-stream' length 38961 bytes (38 KB)
+==================================================
+downloaded 38 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/hms_1.1.3.tar.gz'
+Content type 'binary/octet-stream' length 98350 bytes (96 KB)
+==================================================
+downloaded 96 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/hsdar_1.0.4.tar.gz'
+Content type 'binary/octet-stream' length 5203108 bytes (5.0 MB)
+==================================================
+downloaded 5.0 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/htmltools_0.5.5.tar.gz'
+Content type 'binary/octet-stream' length 342464 bytes (334 KB)
+==================================================
+downloaded 334 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/htmlwidgets_1.6.2.tar.gz'
+Content type 'binary/octet-stream' length 811900 bytes (792 KB)
+==================================================
+downloaded 792 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/httpcode_0.3.0.tar.gz'
+Content type 'binary/octet-stream' length 32203 bytes (31 KB)
+==================================================
+downloaded 31 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/httpuv_1.6.11.tar.gz'
+Content type 'binary/octet-stream' length 591830 bytes (577 KB)
+==================================================
+downloaded 577 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/httr_1.4.6.tar.gz'
+Content type 'binary/octet-stream' length 498598 bytes (486 KB)
+==================================================
+downloaded 486 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/huxtable_5.5.2.tar.gz'
+Content type 'binary/octet-stream' length 1558695 bytes (1.5 MB)
+==================================================
+downloaded 1.5 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/ids_1.0.1.tar.gz'
+Content type 'binary/octet-stream' length 120179 bytes (117 KB)
+==================================================
+downloaded 117 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/imputeTS_3.3.tar.gz'
+Content type 'binary/octet-stream' length 2694683 bytes (2.6 MB)
+==================================================
+downloaded 2.6 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/ini_0.3.1.tar.gz'
+Content type 'binary/octet-stream' length 13243 bytes (12 KB)
+==================================================
+downloaded 12 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/insight_0.19.1.tar.gz'
+Content type 'binary/octet-stream' length 2061836 bytes (2.0 MB)
+==================================================
+downloaded 2.0 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/installr_0.23.4.tar.gz'
+Content type 'binary/octet-stream' length 338692 bytes (330 KB)
+==================================================
+downloaded 330 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/interp_1.1-4.tar.gz'
+Content type 'binary/octet-stream' length 1518645 bytes (1.4 MB)
+==================================================
+downloaded 1.4 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/ipred_0.9-14.tar.gz'
+Content type 'binary/octet-stream' length 380920 bytes (371 KB)
+==================================================
+downloaded 371 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/isoband_0.2.7.tar.gz'
+Content type 'binary/octet-stream' length 1642505 bytes (1.6 MB)
+==================================================
+downloaded 1.6 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/iterators_1.0.14.tar.gz'
+Content type 'binary/octet-stream' length 345411 bytes (337 KB)
+==================================================
+downloaded 337 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/job_0.3.0.tar.gz'
+Content type 'binary/octet-stream' length 58302 bytes (56 KB)
+==================================================
+downloaded 56 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/jpeg_0.1-10.tar.gz'
+Content type 'binary/octet-stream' length 28790 bytes (28 KB)
+==================================================
+downloaded 28 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/jqr_1.2.3.tar.gz'
+Content type 'binary/octet-stream' length 132904 bytes (129 KB)
+==================================================
+downloaded 129 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/jquerylib_0.1.4.tar.gz'
+Content type 'binary/octet-stream' length 526567 bytes (514 KB)
+==================================================
+downloaded 514 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/jsonify_1.2.2.tar.gz'
+Content type 'binary/octet-stream' length 643030 bytes (627 KB)
+==================================================
+downloaded 627 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/jsonlite_1.8.4.tar.gz'
+Content type 'binary/octet-stream' length 1086210 bytes (1.0 MB)
+==================================================
+downloaded 1.0 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/kernlab_0.9-32.tar.gz'
+Content type 'binary/octet-stream' length 2215637 bytes (2.1 MB)
+==================================================
+downloaded 2.1 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/KernSmooth_2.23-21.tar.gz'
+Content type 'binary/octet-stream' length 89631 bytes (87 KB)
+==================================================
+downloaded 87 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/knitr_1.42.tar.gz'
+Content type 'binary/octet-stream' length 1448418 bytes (1.4 MB)
+==================================================
+downloaded 1.4 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/ks_1.14.0.tar.gz'
+Content type 'binary/octet-stream' length 1905966 bytes (1.8 MB)
+==================================================
+downloaded 1.8 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/kSamples_1.2-9.tar.gz'
+Content type 'binary/octet-stream' length 248550 bytes (242 KB)
+==================================================
+downloaded 242 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/L1pack_0.41-24.tar.gz'
+Content type 'binary/octet-stream' length 89088 bytes (87 KB)
+==================================================
+downloaded 87 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/labeling_0.4.2.tar.gz'
+Content type 'binary/octet-stream' length 60100 bytes (58 KB)
+==================================================
+downloaded 58 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/later_1.3.1.tar.gz'
+Content type 'binary/octet-stream' length 130624 bytes (127 KB)
+==================================================
+downloaded 127 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/lattice_0.21-8.tar.gz'
+Content type 'binary/octet-stream' length 1340304 bytes (1.3 MB)
+==================================================
+downloaded 1.3 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/latticeExtra_0.6-30.tar.gz'
+Content type 'binary/octet-stream' length 2200551 bytes (2.1 MB)
+==================================================
+downloaded 2.1 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/lava_1.7.2.1.tar.gz'
+Content type 'binary/octet-stream' length 2479206 bytes (2.4 MB)
+==================================================
+downloaded 2.4 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/lazyeval_0.2.2.tar.gz'
+Content type 'binary/octet-stream' length 155230 bytes (151 KB)
+==================================================
+downloaded 151 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/leafem_0.2.0.tar.gz'
+Content type 'binary/octet-stream' length 3425869 bytes (3.3 MB)
+==================================================
+downloaded 3.3 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/leaflet_2.1.2.tar.gz'
+Content type 'binary/octet-stream' length 2324825 bytes (2.2 MB)
+==================================================
+downloaded 2.2 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/leaflet.providers_1.9.0.tar.gz'
+Content type 'binary/octet-stream' length 46948 bytes (45 KB)
+==================================================
+downloaded 45 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/leafpop_0.1.0.tar.gz'
+Content type 'binary/octet-stream' length 1910551 bytes (1.8 MB)
+==================================================
+downloaded 1.8 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/leafsync_0.1.0.tar.gz'
+Content type 'binary/octet-stream' length 843226 bytes (823 KB)
+==================================================
+downloaded 823 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/lidR_4.0.3.tar.gz'
+Content type 'binary/octet-stream' length 3592777 bytes (3.4 MB)
+==================================================
+downloaded 3.4 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/lifecycle_1.0.3.tar.gz'
+Content type 'binary/octet-stream' length 122648 bytes (119 KB)
+==================================================
+downloaded 119 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/listenv_0.9.0.tar.gz'
+Content type 'binary/octet-stream' length 105140 bytes (102 KB)
+==================================================
+downloaded 102 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/lme4_1.1-33.tar.gz'
+Content type 'binary/octet-stream' length 4225230 bytes (4.0 MB)
+==================================================
+downloaded 4.0 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/lmodel2_1.7-3.tar.gz'
+Content type 'binary/octet-stream' length 337845 bytes (329 KB)
+==================================================
+downloaded 329 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/lmtest_0.9-40.tar.gz'
+Content type 'binary/octet-stream' length 398739 bytes (389 KB)
+==================================================
+downloaded 389 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/locfit_1.5-9.7.tar.gz'
+Content type 'binary/octet-stream' length 531862 bytes (519 KB)
+==================================================
+downloaded 519 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/lubridate_1.9.2.tar.gz'
+Content type 'binary/octet-stream' length 980166 bytes (957 KB)
+==================================================
+downloaded 957 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/lwgeom_0.2-13.tar.gz'
+Content type 'binary/octet-stream' length 472994 bytes (461 KB)
+==================================================
+downloaded 461 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/magrittr_2.0.3.tar.gz'
+Content type 'binary/octet-stream' length 221090 bytes (215 KB)
+==================================================
+downloaded 215 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/MALDIquant_1.22.1.tar.gz'
+Content type 'binary/octet-stream' length 2833537 bytes (2.7 MB)
+==================================================
+downloaded 2.7 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/mapproj_1.2.11.tar.gz'
+Content type 'binary/octet-stream' length 50720 bytes (49 KB)
+==================================================
+downloaded 49 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/maps_3.4.1.tar.gz'
+Content type 'binary/octet-stream' length 3096095 bytes (3.0 MB)
+==================================================
+downloaded 3.0 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/maptools_1.1-6.tar.gz'
+Content type 'binary/octet-stream' length 2114076 bytes (2.0 MB)
+==================================================
+downloaded 2.0 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/mapview_2.11.0.tar.gz'
+Content type 'binary/octet-stream' length 2380955 bytes (2.3 MB)
+==================================================
+downloaded 2.3 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/markdown_1.7.tar.gz'
+Content type 'binary/octet-stream' length 191090 bytes (186 KB)
+==================================================
+downloaded 186 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/MASS_7.3-60.tar.gz'
+Content type 'binary/octet-stream' length 1141546 bytes (1.1 MB)
+==================================================
+downloaded 1.1 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/mathjaxr_1.6-0.tar.gz'
+Content type 'binary/octet-stream' length 915532 bytes (894 KB)
+==================================================
+downloaded 894 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/Matrix_1.5-4.1.tar.gz'
+Content type 'binary/octet-stream' length 4665238 bytes (4.4 MB)
+==================================================
+downloaded 4.4 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/MatrixModels_0.5-1.tar.gz'
+Content type 'binary/octet-stream' length 441340 bytes (430 KB)
+==================================================
+downloaded 430 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/mclust_6.0.0.tar.gz'
+Content type 'binary/octet-stream' length 4093485 bytes (3.9 MB)
+==================================================
+downloaded 3.9 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/Mcomp_2.8.tar.gz'
+Content type 'binary/octet-stream' length 3832768 bytes (3.7 MB)
+==================================================
+downloaded 3.7 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/memoise_2.0.1.tar.gz'
+Content type 'binary/octet-stream' length 47641 bytes (46 KB)
+==================================================
+downloaded 46 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/Metrics_0.1.4.tar.gz'
+Content type 'binary/octet-stream' length 79822 bytes (77 KB)
+==================================================
+downloaded 77 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/mgcv_1.8-42.tar.gz'
+Content type 'binary/octet-stream' length 3209008 bytes (3.1 MB)
+==================================================
+downloaded 3.1 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/mime_0.12.tar.gz'
+Content type 'binary/octet-stream' length 33126 bytes (32 KB)
+==================================================
+downloaded 32 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/miniUI_0.1.1.1.tar.gz'
+Content type 'binary/octet-stream' length 34231 bytes (33 KB)
+==================================================
+downloaded 33 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/minpack.lm_1.2-3.tar.gz'
+Content type 'binary/octet-stream' length 91982 bytes (89 KB)
+==================================================
+downloaded 89 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/minqa_1.2.5.tar.gz'
+Content type 'binary/octet-stream' length 118110 bytes (115 KB)
+==================================================
+downloaded 115 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/misc3d_0.9-1.tar.gz'
+Content type 'binary/octet-stream' length 237418 bytes (231 KB)
+==================================================
+downloaded 231 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/modelbased_0.8.6.tar.gz'
+Content type 'binary/octet-stream' length 1185298 bytes (1.1 MB)
+==================================================
+downloaded 1.1 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/ModelMetrics_1.2.2.2.tar.gz'
+Content type 'binary/octet-stream' length 144797 bytes (141 KB)
+==================================================
+downloaded 141 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/modelr_0.1.11.tar.gz'
+Content type 'binary/octet-stream' length 199911 bytes (195 KB)
+==================================================
+downloaded 195 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/multicool_0.1-12.tar.gz'
+Content type 'binary/octet-stream' length 109939 bytes (107 KB)
+==================================================
+downloaded 107 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/munsell_0.5.0.tar.gz'
+Content type 'binary/octet-stream' length 243612 bytes (237 KB)
+==================================================
+downloaded 237 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/mvtnorm_1.1-3.tar.gz'
+Content type 'binary/octet-stream' length 225527 bytes (220 KB)
+==================================================
+downloaded 220 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/ncdf4_1.21.tar.gz'
+Content type 'binary/octet-stream' length 278369 bytes (271 KB)
+==================================================
+downloaded 271 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/nlme_3.1-162.tar.gz'
+Content type 'binary/octet-stream' length 2318241 bytes (2.2 MB)
+==================================================
+downloaded 2.2 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/nloptr_2.0.3.tar.gz'
+Content type 'binary/octet-stream' length 710354 bytes (693 KB)
+==================================================
+downloaded 693 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/nnet_7.3-19.tar.gz'
+Content type 'binary/octet-stream' length 110278 bytes (107 KB)
+==================================================
+downloaded 107 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/numDeriv_2016.8-1.1.tar.gz'
+Content type 'binary/octet-stream' length 113093 bytes (110 KB)
+==================================================
+downloaded 110 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/odbc_1.3.4.tar.gz'
+Content type 'binary/octet-stream' length 555839 bytes (542 KB)
+==================================================
+downloaded 542 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/openssl_2.0.6.tar.gz'
+Content type 'binary/octet-stream' length 1305424 bytes (1.2 MB)
+==================================================
+downloaded 1.2 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/pacman_0.5.1.tar.gz'
+Content type 'binary/octet-stream' length 381714 bytes (372 KB)
+==================================================
+downloaded 372 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/padr_0.6.2.tar.gz'
+Content type 'binary/octet-stream' length 2912139 bytes (2.8 MB)
+==================================================
+downloaded 2.8 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/parallelly_1.35.0.tar.gz'
+Content type 'binary/octet-stream' length 327972 bytes (320 KB)
+==================================================
+downloaded 320 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/parameters_0.21.0.tar.gz'
+Content type 'binary/octet-stream' length 1973538 bytes (1.9 MB)
+==================================================
+downloaded 1.9 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/patchwork_1.1.2.tar.gz'
+Content type 'binary/octet-stream' length 3235694 bytes (3.1 MB)
+==================================================
+downloaded 3.1 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/pcaPP_2.0-3.tar.gz'
+Content type 'binary/octet-stream' length 367445 bytes (358 KB)
+==================================================
+downloaded 358 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/performance_0.10.3.tar.gz'
+Content type 'binary/octet-stream' length 3017312 bytes (2.9 MB)
+==================================================
+downloaded 2.9 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/PerformanceAnalytics_2.0.4.tar.gz'
+Content type 'binary/octet-stream' length 3104770 bytes (3.0 MB)
+==================================================
+downloaded 3.0 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/pillar_1.9.0.tar.gz'
+Content type 'binary/octet-stream' length 646559 bytes (631 KB)
+==================================================
+downloaded 631 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/pkgbuild_1.4.0.tar.gz'
+Content type 'binary/octet-stream' length 175904 bytes (171 KB)
+==================================================
+downloaded 171 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/pkgconfig_2.0.3.tar.gz'
+Content type 'binary/octet-stream' length 17577 bytes (17 KB)
+==================================================
+downloaded 17 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/pkgdown_2.0.7.tar.gz'
+Content type 'binary/octet-stream' length 732616 bytes (715 KB)
+==================================================
+downloaded 715 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/pkgload_1.3.2.tar.gz'
+Content type 'binary/octet-stream' length 176579 bytes (172 KB)
+==================================================
+downloaded 172 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/plantecophys_1.4-6.tar.gz'
+Content type 'binary/octet-stream' length 237187 bytes (231 KB)
+==================================================
+downloaded 231 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/plogr_0.2.0.tar.gz'
+Content type 'binary/octet-stream' length 12887 bytes (12 KB)
+==================================================
+downloaded 12 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/plot3D_1.4.tar.gz'
+Content type 'binary/octet-stream' length 2790534 bytes (2.7 MB)
+==================================================
+downloaded 2.7 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/plotly_4.10.1.tar.gz'
+Content type 'binary/octet-stream' length 3180094 bytes (3.0 MB)
+==================================================
+downloaded 3.0 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/plotrix_3.8-2.tar.gz'
+Content type 'binary/octet-stream' length 1137799 bytes (1.1 MB)
+==================================================
+downloaded 1.1 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/plyr_1.8.8.tar.gz'
+Content type 'binary/octet-stream' length 822215 bytes (802 KB)
+==================================================
+downloaded 802 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/png_0.1-8.tar.gz'
+Content type 'binary/octet-stream' length 40025 bytes (39 KB)
+==================================================
+downloaded 39 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/polynom_1.4-1.tar.gz'
+Content type 'binary/octet-stream' length 404660 bytes (395 KB)
+==================================================
+downloaded 395 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/pracma_2.4.2.tar.gz'
+Content type 'binary/octet-stream' length 1722874 bytes (1.6 MB)
+==================================================
+downloaded 1.6 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/praise_1.0.0.tar.gz'
+Content type 'binary/octet-stream' length 16154 bytes (15 KB)
+==================================================
+downloaded 15 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/prettyunits_1.1.1.tar.gz'
+Content type 'binary/octet-stream' length 34491 bytes (33 KB)
+==================================================
+downloaded 33 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/pROC_1.18.2.tar.gz'
+Content type 'binary/octet-stream' length 826702 bytes (807 KB)
+==================================================
+downloaded 807 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/processx_3.8.1.tar.gz'
+Content type 'binary/octet-stream' length 435269 bytes (425 KB)
+==================================================
+downloaded 425 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/prodlim_2023.03.31.tar.gz'
+Content type 'binary/octet-stream' length 409440 bytes (399 KB)
+==================================================
+downloaded 399 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/profvis_0.3.8.tar.gz'
+Content type 'binary/octet-stream' length 198051 bytes (193 KB)
+==================================================
+downloaded 193 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/progress_1.2.2.tar.gz'
+Content type 'binary/octet-stream' length 83560 bytes (81 KB)
+==================================================
+downloaded 81 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/progressr_0.13.0.tar.gz'
+Content type 'binary/octet-stream' length 378219 bytes (369 KB)
+==================================================
+downloaded 369 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/promises_1.2.0.1.tar.gz'
+Content type 'binary/octet-stream' length 1612145 bytes (1.5 MB)
+==================================================
+downloaded 1.5 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/prospectr_0.2.6.tar.gz'
+Content type 'binary/octet-stream' length 2619573 bytes (2.5 MB)
+==================================================
+downloaded 2.5 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/protolite_2.2.0.tar.gz'
+Content type 'binary/octet-stream' length 184486 bytes (180 KB)
+==================================================
+downloaded 180 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/proxy_0.4-27.tar.gz'
+Content type 'binary/octet-stream' length 174072 bytes (169 KB)
+==================================================
+downloaded 169 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/ps_1.7.5.tar.gz'
+Content type 'binary/octet-stream' length 383872 bytes (374 KB)
+==================================================
+downloaded 374 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/purrr_1.0.1.tar.gz'
+Content type 'binary/octet-stream' length 487678 bytes (476 KB)
+==================================================
+downloaded 476 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/quadprog_1.5-8.tar.gz'
+Content type 'binary/octet-stream' length 30243 bytes (29 KB)
+==================================================
+downloaded 29 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/Quandl_2.11.0.tar.gz'
+Content type 'binary/octet-stream' length 68236 bytes (66 KB)
+==================================================
+downloaded 66 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/quantmod_0.4.22.tar.gz'
+Content type 'binary/octet-stream' length 1043864 bytes (1019 KB)
+==================================================
+downloaded 1019 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/quantreg_5.95.tar.gz'
+Content type 'binary/octet-stream' length 1549751 bytes (1.5 MB)
+==================================================
+downloaded 1.5 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/R6_2.5.1.tar.gz'
+Content type 'binary/octet-stream' length 82529 bytes (80 KB)
+==================================================
+downloaded 80 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/ragg_1.2.5.tar.gz'
+Content type 'binary/octet-stream' length 491495 bytes (479 KB)
+==================================================
+downloaded 479 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/rainbow_3.7.tar.gz'
+Content type 'binary/octet-stream' length 702413 bytes (685 KB)
+==================================================
+downloaded 685 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/ranger_0.15.1.tar.gz'
+Content type 'binary/octet-stream' length 411445 bytes (401 KB)
+==================================================
+downloaded 401 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/rapidjsonr_1.2.0.tar.gz'
+Content type 'binary/octet-stream' length 129189 bytes (126 KB)
+==================================================
+downloaded 126 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/rappdirs_0.3.3.tar.gz'
+Content type 'binary/octet-stream' length 43881 bytes (42 KB)
+==================================================
+downloaded 42 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/raster_3.6-20.tar.gz'
+Content type 'binary/octet-stream' length 3328626 bytes (3.2 MB)
+==================================================
+downloaded 3.2 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/rasterVis_0.51.5.tar.gz'
+Content type 'binary/octet-stream' length 210649 bytes (205 KB)
+==================================================
+downloaded 205 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/rcmdcheck_1.4.0.tar.gz'
+Content type 'binary/octet-stream' length 168336 bytes (164 KB)
+==================================================
+downloaded 164 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/RColorBrewer_1.1-3.tar.gz'
+Content type 'binary/octet-stream' length 53104 bytes (51 KB)
+==================================================
+downloaded 51 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/Rcpp_1.0.10.tar.gz'
+Content type 'binary/octet-stream' length 2139397 bytes (2.0 MB)
+==================================================
+downloaded 2.0 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/RcppArmadillo_0.12.2.0.0.tar.gz'
+Content type 'binary/octet-stream' length 1036257 bytes (1011 KB)
+==================================================
+downloaded 1011 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/RcppEigen_0.3.3.9.3.tar.gz'
+Content type 'binary/octet-stream' length 1546605 bytes (1.5 MB)
+==================================================
+downloaded 1.5 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/RcppRoll_0.3.0.tar.gz'
+Content type 'binary/octet-stream' length 103136 bytes (100 KB)
+==================================================
+downloaded 100 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/RcppTOML_0.2.2.tar.gz'
+Content type 'binary/octet-stream' length 237813 bytes (232 KB)
+==================================================
+downloaded 232 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/RCurl_1.98-1.12.tar.gz'
+Content type 'binary/octet-stream' length 1064508 bytes (1.0 MB)
+==================================================
+downloaded 1.0 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/readr_2.1.4.tar.gz'
+Content type 'binary/octet-stream' length 864211 bytes (843 KB)
+==================================================
+downloaded 843 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/readxl_1.4.2.tar.gz'
+Content type 'binary/octet-stream' length 876203 bytes (855 KB)
+==================================================
+downloaded 855 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/recipes_1.0.6.tar.gz'
+Content type 'binary/octet-stream' length 1488126 bytes (1.4 MB)
+==================================================
+downloaded 1.4 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/REddyProc_1.3.2.tar.gz'
+Content type 'binary/octet-stream' length 2107943 bytes (2.0 MB)
+==================================================
+downloaded 2.0 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/rematch_1.0.1.tar.gz'
+Content type 'binary/octet-stream' length 12215 bytes (11 KB)
+==================================================
+downloaded 11 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/rematch2_2.1.2.tar.gz'
+Content type 'binary/octet-stream' length 44720 bytes (43 KB)
+==================================================
+downloaded 43 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/remotes_2.4.2.tar.gz'
+Content type 'binary/octet-stream' length 397028 bytes (387 KB)
+==================================================
+downloaded 387 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/reprex_2.0.2.tar.gz'
+Content type 'binary/octet-stream' length 495155 bytes (483 KB)
+==================================================
+downloaded 483 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/reshape_0.8.9.tar.gz'
+Content type 'binary/octet-stream' length 167463 bytes (163 KB)
+==================================================
+downloaded 163 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/reshape2_1.4.4.tar.gz'
+Content type 'binary/octet-stream' length 115092 bytes (112 KB)
+==================================================
+downloaded 112 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/reticulate_1.28.tar.gz'
+Content type 'binary/octet-stream' length 1727654 bytes (1.6 MB)
+==================================================
+downloaded 1.6 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/rgdal_1.6-6.tar.gz'
+Content type 'binary/octet-stream' length 4887490 bytes (4.7 MB)
+==================================================
+downloaded 4.7 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/rgee_1.1.5.tar.gz'
+Content type 'binary/octet-stream' length 4060463 bytes (3.9 MB)
+==================================================
+downloaded 3.9 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/rgeos_0.6-2.tar.gz'
+Content type 'binary/octet-stream' length 691099 bytes (674 KB)
+==================================================
+downloaded 674 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/rgl_1.1.3.tar.gz'
+Content type 'binary/octet-stream' length 4548461 bytes (4.3 MB)
+==================================================
+downloaded 4.3 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/RgoogleMaps_1.4.5.3.tar.gz'
+Content type 'binary/octet-stream' length 493430 bytes (481 KB)
+==================================================
+downloaded 481 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/riingo_0.3.1.tar.gz'
+Content type 'binary/octet-stream' length 118215 bytes (115 KB)
+==================================================
+downloaded 115 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/rlang_1.1.1.tar.gz'
+Content type 'binary/octet-stream' length 1542171 bytes (1.5 MB)
+==================================================
+downloaded 1.5 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/rlas_1.6.3.tar.gz'
+Content type 'binary/octet-stream' length 974869 bytes (952 KB)
+==================================================
+downloaded 952 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/rmarkdown_2.21.tar.gz'
+Content type 'binary/octet-stream' length 2553586 bytes (2.4 MB)
+==================================================
+downloaded 2.4 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/RNetCDF_2.6-2.tar.gz'
+Content type 'binary/octet-stream' length 221297 bytes (216 KB)
+==================================================
+downloaded 216 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/robustbase_0.95-1.tar.gz'
+Content type 'binary/octet-stream' length 3068725 bytes (2.9 MB)
+==================================================
+downloaded 2.9 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/roxygen2_7.2.3.tar.gz'
+Content type 'binary/octet-stream' length 695318 bytes (679 KB)
+==================================================
+downloaded 679 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/rpart_4.1.19.tar.gz'
+Content type 'binary/octet-stream' length 932497 bytes (910 KB)
+==================================================
+downloaded 910 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/rprojroot_2.0.3.tar.gz'
+Content type 'binary/octet-stream' length 101196 bytes (98 KB)
+==================================================
+downloaded 98 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/rsample_1.1.1.tar.gz'
+Content type 'binary/octet-stream' length 501108 bytes (489 KB)
+==================================================
+downloaded 489 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/RSQLite_2.3.1.tar.gz'
+Content type 'binary/octet-stream' length 1269248 bytes (1.2 MB)
+==================================================
+downloaded 1.2 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/rstudioapi_0.14.tar.gz'
+Content type 'binary/octet-stream' length 290115 bytes (283 KB)
+==================================================
+downloaded 283 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/rversions_2.1.2.tar.gz'
+Content type 'binary/octet-stream' length 64386 bytes (62 KB)
+==================================================
+downloaded 62 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/rvest_1.0.3.tar.gz'
+Content type 'binary/octet-stream' length 209936 bytes (205 KB)
+==================================================
+downloaded 205 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/s2_1.1.4.tar.gz'
+Content type 'binary/octet-stream' length 2168239 bytes (2.1 MB)
+==================================================
+downloaded 2.1 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/sass_0.4.6.tar.gz'
+Content type 'binary/octet-stream' length 2414687 bytes (2.3 MB)
+==================================================
+downloaded 2.3 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/satellite_1.0.4.tar.gz'
+Content type 'binary/octet-stream' length 2922660 bytes (2.8 MB)
+==================================================
+downloaded 2.8 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/scales_1.2.1.tar.gz'
+Content type 'binary/octet-stream' length 606846 bytes (592 KB)
+==================================================
+downloaded 592 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/scam_1.2-14.tar.gz'
+Content type 'binary/octet-stream' length 939062 bytes (917 KB)
+==================================================
+downloaded 917 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/see_0.7.5.tar.gz'
+Content type 'binary/octet-stream' length 567514 bytes (554 KB)
+==================================================
+downloaded 554 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/selectr_0.4-2.tar.gz'
+Content type 'binary/octet-stream' length 488354 bytes (476 KB)
+==================================================
+downloaded 476 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/servr_0.27.tar.gz'
+Content type 'binary/octet-stream' length 86580 bytes (84 KB)
+==================================================
+downloaded 84 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/sessioninfo_1.2.2.tar.gz'
+Content type 'binary/octet-stream' length 183847 bytes (179 KB)
+==================================================
+downloaded 179 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/sf_1.0-12.tar.gz'
+Content type 'binary/octet-stream' length 3507982 bytes (3.3 MB)
+==================================================
+downloaded 3.3 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/sfheaders_0.4.2.tar.gz'
+Content type 'binary/octet-stream' length 457580 bytes (446 KB)
+==================================================
+downloaded 446 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/sfsmisc_1.1-15.tar.gz'
+Content type 'binary/octet-stream' length 657695 bytes (642 KB)
+==================================================
+downloaded 642 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/shiny_1.7.4.tar.gz'
+Content type 'binary/octet-stream' length 4254226 bytes (4.1 MB)
+==================================================
+downloaded 4.1 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/shinyjs_2.1.0.tar.gz'
+Content type 'binary/octet-stream' length 1084640 bytes (1.0 MB)
+==================================================
+downloaded 1.0 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/signal_0.7-7.tar.gz'
+Content type 'binary/octet-stream' length 329331 bytes (321 KB)
+==================================================
+downloaded 321 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/sjlabelled_1.2.0.tar.gz'
+Content type 'binary/octet-stream' length 317749 bytes (310 KB)
+==================================================
+downloaded 310 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/sjmisc_2.8.9.tar.gz'
+Content type 'binary/octet-stream' length 530861 bytes (518 KB)
+==================================================
+downloaded 518 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/sjPlot_2.8.14.tar.gz'
+Content type 'binary/octet-stream' length 1481136 bytes (1.4 MB)
+==================================================
+downloaded 1.4 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/sjstats_0.18.2.tar.gz'
+Content type 'binary/octet-stream' length 348679 bytes (340 KB)
+==================================================
+downloaded 340 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/slider_0.3.0.tar.gz'
+Content type 'binary/octet-stream' length 297954 bytes (290 KB)
+==================================================
+downloaded 290 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/smooth_3.2.0.tar.gz'
+Content type 'binary/octet-stream' length 4322224 bytes (4.1 MB)
+==================================================
+downloaded 4.1 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/snow_0.4-4.tar.gz'
+Content type 'binary/octet-stream' length 95638 bytes (93 KB)
+==================================================
+downloaded 93 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/solarPos_1.0.tar.gz'
+Content type 'binary/octet-stream' length 42233 bytes (41 KB)
+==================================================
+downloaded 41 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/solartime_0.0.2.tar.gz'
+Content type 'binary/octet-stream' length 80282 bytes (78 KB)
+==================================================
+downloaded 78 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/sourcetools_0.1.7-1.tar.gz'
+Content type 'binary/octet-stream' length 45996 bytes (44 KB)
+==================================================
+downloaded 44 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/sp_1.6-0.tar.gz'
+Content type 'binary/octet-stream' length 1852786 bytes (1.8 MB)
+==================================================
+downloaded 1.8 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/SparseM_1.81.tar.gz'
+Content type 'binary/octet-stream' length 1041673 bytes (1017 KB)
+==================================================
+downloaded 1017 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/spatial_7.3-16.tar.gz'
+Content type 'binary/octet-stream' length 132495 bytes (129 KB)
+==================================================
+downloaded 129 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/spatialRF_1.1.4.tar.gz'
+Content type 'binary/octet-stream' length 613964 bytes (599 KB)
+==================================================
+downloaded 599 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/splus2R_1.3-3.tar.gz'
+Content type 'binary/octet-stream' length 331666 bytes (323 KB)
+==================================================
+downloaded 323 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/SQUAREM_2021.1.tar.gz'
+Content type 'binary/octet-stream' length 177454 bytes (173 KB)
+==================================================
+downloaded 173 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/stars_0.6-1.tar.gz'
+Content type 'binary/octet-stream' length 4060157 bytes (3.9 MB)
+==================================================
+downloaded 3.9 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/statmod_1.5.0.tar.gz'
+Content type 'binary/octet-stream' length 310665 bytes (303 KB)
+==================================================
+downloaded 303 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/stinepack_1.4.tar.gz'
+Content type 'binary/octet-stream' length 31096 bytes (30 KB)
+==================================================
+downloaded 30 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/stringi_1.7.12.tar.gz'
+Content type 'binary/octet-stream' length 3226737 bytes (3.1 MB)
+==================================================
+downloaded 3.1 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/stringr_1.5.0.tar.gz'
+Content type 'binary/octet-stream' length 304214 bytes (297 KB)
+==================================================
+downloaded 297 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/SuppDists_1.1-9.7.tar.gz'
+Content type 'binary/octet-stream' length 236427 bytes (230 KB)
+==================================================
+downloaded 230 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/survival_3.5-5.tar.gz'
+Content type 'binary/octet-stream' length 6598979 bytes (6.3 MB)
+==================================================
+downloaded 6.3 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/svglite_2.1.1.tar.gz'
+Content type 'binary/octet-stream' length 204208 bytes (199 KB)
+==================================================
+downloaded 199 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/sys_3.4.1.tar.gz'
+Content type 'binary/octet-stream' length 40140 bytes (39 KB)
+==================================================
+downloaded 39 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/systemfonts_1.0.4.tar.gz'
+Content type 'binary/octet-stream' length 264745 bytes (258 KB)
+==================================================
+downloaded 258 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/terra_1.7-29.tar.gz'
+Content type 'binary/octet-stream' length 4067114 bytes (3.9 MB)
+==================================================
+downloaded 3.9 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/testthat_3.1.8.tar.gz'
+Content type 'binary/octet-stream' length 1808231 bytes (1.7 MB)
+==================================================
+downloaded 1.7 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/texreg_1.38.6.tar.gz'
+Content type 'binary/octet-stream' length 1489185 bytes (1.4 MB)
+==================================================
+downloaded 1.4 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/textshaping_0.3.6.tar.gz'
+Content type 'binary/octet-stream' length 105292 bytes (102 KB)
+==================================================
+downloaded 102 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/tibble_3.2.1.tar.gz'
+Content type 'binary/octet-stream' length 672085 bytes (656 KB)
+==================================================
+downloaded 656 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/tidyquant_1.0.7.tar.gz'
+Content type 'binary/octet-stream' length 1700271 bytes (1.6 MB)
+==================================================
+downloaded 1.6 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/tidyr_1.3.0.tar.gz'
+Content type 'binary/octet-stream' length 1199702 bytes (1.1 MB)
+==================================================
+downloaded 1.1 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/tidyselect_1.2.0.tar.gz'
+Content type 'binary/octet-stream' length 219931 bytes (214 KB)
+==================================================
+downloaded 214 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/tidyverse_2.0.0.tar.gz'
+Content type 'binary/octet-stream' length 425182 bytes (415 KB)
+==================================================
+downloaded 415 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/timechange_0.2.0.tar.gz'
+Content type 'binary/octet-stream' length 182031 bytes (177 KB)
+==================================================
+downloaded 177 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/timeDate_4022.108.tar.gz'
+Content type 'binary/octet-stream' length 1384283 bytes (1.3 MB)
+==================================================
+downloaded 1.3 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/timetk_2.8.3.tar.gz'
+Content type 'binary/octet-stream' length 2408876 bytes (2.3 MB)
+==================================================
+downloaded 2.3 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/tinytex_0.45.tar.gz'
+Content type 'binary/octet-stream' length 133188 bytes (130 KB)
+==================================================
+downloaded 130 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/trackeR_1.5.2.tar.gz'
+Content type 'binary/octet-stream' length 4973295 bytes (4.7 MB)
+==================================================
+downloaded 4.7 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/triebeard_0.4.1.tar.gz'
+Content type 'binary/octet-stream' length 189969 bytes (185 KB)
+==================================================
+downloaded 185 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/tseries_0.10-54.tar.gz'
+Content type 'binary/octet-stream' length 371866 bytes (363 KB)
+==================================================
+downloaded 363 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/tsfeatures_1.1.tar.gz'
+Content type 'binary/octet-stream' length 215383 bytes (210 KB)
+==================================================
+downloaded 210 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/tsibble_1.1.3.tar.gz'
+Content type 'binary/octet-stream' length 1046633 bytes (1022 KB)
+==================================================
+downloaded 1022 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/TTR_0.24.3.tar.gz'
+Content type 'binary/octet-stream' length 507364 bytes (495 KB)
+==================================================
+downloaded 495 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/tweenr_2.0.2.tar.gz'
+Content type 'binary/octet-stream' length 448083 bytes (437 KB)
+==================================================
+downloaded 437 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/tzdb_0.4.0.tar.gz'
+Content type 'binary/octet-stream' length 646709 bytes (631 KB)
+==================================================
+downloaded 631 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/units_0.8-2.tar.gz'
+Content type 'binary/octet-stream' length 355289 bytes (346 KB)
+==================================================
+downloaded 346 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/urca_1.3-3.tar.gz'
+Content type 'binary/octet-stream' length 1089994 bytes (1.0 MB)
+==================================================
+downloaded 1.0 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/urlchecker_1.0.1.tar.gz'
+Content type 'binary/octet-stream' length 33757 bytes (32 KB)
+==================================================
+downloaded 32 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/urltools_1.7.3.tar.gz'
+Content type 'binary/octet-stream' length 293820 bytes (286 KB)
+==================================================
+downloaded 286 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/usethis_2.1.6.tar.gz'
+Content type 'binary/octet-stream' length 789552 bytes (771 KB)
+==================================================
+downloaded 771 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/utf8_1.2.3.tar.gz'
+Content type 'binary/octet-stream' length 146965 bytes (143 KB)
+==================================================
+downloaded 143 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/uuid_1.1-0.tar.gz'
+Content type 'binary/octet-stream' length 44963 bytes (43 KB)
+==================================================
+downloaded 43 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/V8_4.3.0.tar.gz'
+Content type 'binary/octet-stream' length 7942574 bytes (7.6 MB)
+==================================================
+downloaded 7.6 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/vctrs_0.6.2.tar.gz'
+Content type 'binary/octet-stream' length 1284200 bytes (1.2 MB)
+==================================================
+downloaded 1.2 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/viridis_0.6.3.tar.gz'
+Content type 'binary/octet-stream' length 3013208 bytes (2.9 MB)
+==================================================
+downloaded 2.9 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/viridisLite_0.4.2.tar.gz'
+Content type 'binary/octet-stream' length 1296750 bytes (1.2 MB)
+==================================================
+downloaded 1.2 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/vroom_1.6.3.tar.gz'
+Content type 'binary/octet-stream' length 963782 bytes (941 KB)
+==================================================
+downloaded 941 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/waldo_0.5.1.tar.gz'
+Content type 'binary/octet-stream' length 102678 bytes (100 KB)
+==================================================
+downloaded 100 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/warp_0.2.0.tar.gz'
+Content type 'binary/octet-stream' length 63189 bytes (61 KB)
+==================================================
+downloaded 61 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/webshot_0.5.4.tar.gz'
+Content type 'binary/octet-stream' length 204738 bytes (199 KB)
+==================================================
+downloaded 199 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/whisker_0.4.1.tar.gz'
+Content type 'binary/octet-stream' length 65828 bytes (64 KB)
+==================================================
+downloaded 64 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/withr_2.5.0.tar.gz'
+Content type 'binary/octet-stream' length 228728 bytes (223 KB)
+==================================================
+downloaded 223 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/wk_0.7.3.tar.gz'
+Content type 'binary/octet-stream' length 1667615 bytes (1.6 MB)
+==================================================
+downloaded 1.6 MB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/xfun_0.39.tar.gz'
+Content type 'binary/octet-stream' length 427159 bytes (417 KB)
+==================================================
+downloaded 417 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/xml2_1.3.4.tar.gz'
+Content type 'binary/octet-stream' length 229834 bytes (224 KB)
+==================================================
+downloaded 224 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/xopen_1.0.0.tar.gz'
+Content type 'binary/octet-stream' length 22431 bytes (21 KB)
+==================================================
+downloaded 21 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/xtable_1.8-4.tar.gz'
+Content type 'binary/octet-stream' length 700913 bytes (684 KB)
+==================================================
+downloaded 684 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/xts_0.13.1.tar.gz'
+Content type 'binary/octet-stream' length 843891 bytes (824 KB)
+==================================================
+downloaded 824 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/yaml_2.3.7.tar.gz'
+Content type 'binary/octet-stream' length 111721 bytes (109 KB)
+==================================================
+downloaded 109 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/zip_2.3.0.tar.gz'
+Content type 'binary/octet-stream' length 632144 bytes (617 KB)
+==================================================
+downloaded 617 KB
+
+trying URL 'https://packagemanager.posit.co/cran/__linux__/jammy/latest/src/contrib/zoo_1.8-12.tar.gz'
+Content type 'binary/octet-stream' length 1015488 bytes (991 KB)
+==================================================
+downloaded 991 KB
+
+* installing *binary* package ‘shape’ ...
+* DONE (shape)
+* installing *binary* package ‘abind’ ...
+* DONE (abind)
+* installing *binary* package ‘ash’ ...
+* DONE (ash)
+* installing *binary* package ‘assertthat’ ...
+* DONE (assertthat)
+* installing *binary* package ‘backports’ ...
+* DONE (backports)
+* installing *binary* package ‘base64enc’ ...
+* DONE (base64enc)
+* installing *binary* package ‘BH’ ...
+* DONE (BH)
+* installing *binary* package ‘BiocManager’ ...
+* DONE (BiocManager)
+* installing *binary* package ‘bit’ ...
+* DONE (bit)
+* installing *binary* package ‘bitops’ ...
+* DONE (bitops)
+* installing *binary* package ‘boot’ ...
+* DONE (boot)
+* installing *binary* package ‘brew’ ...
+* DONE (brew)
+* installing *binary* package ‘brio’ ...
+* DONE (brio)
+* installing *binary* package ‘cli’ ...
+* DONE (cli)
+* installing *binary* package ‘clipr’ ...
+* DONE (clipr)
+* installing *binary* package ‘cluster’ ...
+* DONE (cluster)
+* installing *binary* package ‘codetools’ ...
+* DONE (codetools)
+* installing *binary* package ‘colorspace’ ...
+* DONE (colorspace)
+* installing *binary* package ‘commonmark’ ...
+* DONE (commonmark)
+* installing *binary* package ‘cpp11’ ...
+* DONE (cpp11)
+* installing *binary* package ‘crayon’ ...
+* DONE (crayon)
+* installing *binary* package ‘curl’ ...
+* DONE (curl)
+* installing *binary* package ‘data.table’ ...
+* DONE (data.table)
+* installing *binary* package ‘DBI’ ...
+* DONE (DBI)
+* installing *binary* package ‘deldir’ ...
+* DONE (deldir)
+* installing *binary* package ‘DEoptimR’ ...
+* DONE (DEoptimR)
+* installing *binary* package ‘deSolve’ ...
+* DONE (deSolve)
+* installing *binary* package ‘digest’ ...
+* DONE (digest)
+* installing *binary* package ‘estimability’ ...
+* DONE (estimability)
+* installing *binary* package ‘evaluate’ ...
+* DONE (evaluate)
+* installing *binary* package ‘fansi’ ...
+* DONE (fansi)
+* installing *binary* package ‘farver’ ...
+* DONE (farver)
+* installing *binary* package ‘fastmap’ ...
+* DONE (fastmap)
+* installing *binary* package ‘fastmatrix’ ...
+* DONE (fastmatrix)
+* installing *binary* package ‘FNN’ ...
+* DONE (FNN)
+* installing *binary* package ‘foreign’ ...
+* DONE (foreign)
+* installing *binary* package ‘fracdiff’ ...
+* DONE (fracdiff)
+* installing *binary* package ‘fs’ ...
+* DONE (fs)
+* installing *binary* package ‘generics’ ...
+* DONE (generics)
+* installing *binary* package ‘gitcreds’ ...
+* DONE (gitcreds)
+* installing *binary* package ‘glue’ ...
+* DONE (glue)
+* installing *binary* package ‘gmp’ ...
+* DONE (gmp)
+* installing *binary* package ‘gower’ ...
+* DONE (gower)
+* installing *binary* package ‘gtools’ ...
+* DONE (gtools)
+* installing *binary* package ‘httpcode’ ...
+* DONE (httpcode)
+* installing *binary* package ‘ini’ ...
+* DONE (ini)
+* installing *binary* package ‘insight’ ...
+* DONE (insight)
+* installing *binary* package ‘isoband’ ...
+* DONE (isoband)
+* installing *binary* package ‘iterators’ ...
+* DONE (iterators)
+* installing *binary* package ‘jpeg’ ...
+* DONE (jpeg)
+* installing *binary* package ‘jsonlite’ ...
+* DONE (jsonlite)
+* installing *binary* package ‘kernlab’ ...
+* DONE (kernlab)
+* installing *binary* package ‘KernSmooth’ ...
+* DONE (KernSmooth)
+* installing *binary* package ‘labeling’ ...
+* DONE (labeling)
+* installing *binary* package ‘lattice’ ...
+* DONE (lattice)
+* installing *binary* package ‘lazyeval’ ...
+* DONE (lazyeval)
+* installing *binary* package ‘leaflet.providers’ ...
+* DONE (leaflet.providers)
+* installing *binary* package ‘listenv’ ...
+* DONE (listenv)
+* installing *binary* package ‘lmodel2’ ...
+* DONE (lmodel2)
+* installing *binary* package ‘magrittr’ ...
+* DONE (magrittr)
+* installing *binary* package ‘MALDIquant’ ...
+* DONE (MALDIquant)
+* installing *binary* package ‘maps’ ...
+* DONE (maps)
+* installing *binary* package ‘MASS’ ...
+* DONE (MASS)
+* installing *binary* package ‘mathjaxr’ ...
+* DONE (mathjaxr)
+* installing *binary* package ‘mclust’ ...
+* DONE (mclust)
+* installing *binary* package ‘Metrics’ ...
+* DONE (Metrics)
+* installing *binary* package ‘mime’ ...
+* DONE (mime)
+* installing *binary* package ‘minpack.lm’ ...
+* DONE (minpack.lm)
+* installing *binary* package ‘misc3d’ ...
+* DONE (misc3d)
+* installing *binary* package ‘mvtnorm’ ...
+* DONE (mvtnorm)
+* installing *binary* package ‘ncdf4’ ...
+* DONE (ncdf4)
+* installing *binary* package ‘nnet’ ...
+* DONE (nnet)
+* installing *binary* package ‘numDeriv’ ...
+* DONE (numDeriv)
+* installing *binary* package ‘parallelly’ ...
+* DONE (parallelly)
+* installing *binary* package ‘pkgconfig’ ...
+* DONE (pkgconfig)
+* installing *binary* package ‘plantecophys’ ...
+* DONE (plantecophys)
+* installing *binary* package ‘plogr’ ...
+* DONE (plogr)
+* installing *binary* package ‘plotrix’ ...
+* DONE (plotrix)
+* installing *binary* package ‘png’ ...
+* DONE (png)
+* installing *binary* package ‘polynom’ ...
+* DONE (polynom)
+* installing *binary* package ‘pracma’ ...
+* DONE (pracma)
+* installing *binary* package ‘praise’ ...
+* DONE (praise)
+* installing *binary* package ‘prettyunits’ ...
+* DONE (prettyunits)
+* installing *binary* package ‘proxy’ ...
+* DONE (proxy)
+* installing *binary* package ‘ps’ ...
+* DONE (ps)
+* installing *binary* package ‘quadprog’ ...
+* DONE (quadprog)
+* installing *binary* package ‘R6’ ...
+* DONE (R6)
+* installing *binary* package ‘rapidjsonr’ ...
+* DONE (rapidjsonr)
+* installing *binary* package ‘rappdirs’ ...
+* DONE (rappdirs)
+* installing *binary* package ‘RColorBrewer’ ...
+* DONE (RColorBrewer)
+* installing *binary* package ‘Rcpp’ ...
+* DONE (Rcpp)
+* installing *binary* package ‘rematch’ ...
+* DONE (rematch)
+* installing *binary* package ‘remotes’ ...
+* DONE (remotes)
+* installing *binary* package ‘rlang’ ...
+* DONE (rlang)
+* installing *binary* package ‘RNetCDF’ ...
+* DONE (RNetCDF)
+* installing *binary* package ‘rpart’ ...
+* DONE (rpart)
+* installing *binary* package ‘rprojroot’ ...
+* DONE (rprojroot)
+* installing *binary* package ‘rstudioapi’ ...
+* DONE (rstudioapi)
+* installing *binary* package ‘sfsmisc’ ...
+* DONE (sfsmisc)
+* installing *binary* package ‘snow’ ...
+* DONE (snow)
+* installing *binary* package ‘solarPos’ ...
+* DONE (solarPos)
+* installing *binary* package ‘sourcetools’ ...
+* DONE (sourcetools)
+* installing *binary* package ‘SparseM’ ...
+* DONE (SparseM)
+* installing *binary* package ‘spatial’ ...
+* DONE (spatial)
+* installing *binary* package ‘splus2R’ ...
+* DONE (splus2R)
+* installing *binary* package ‘SQUAREM’ ...
+* DONE (SQUAREM)
+* installing *binary* package ‘statmod’ ...
+* DONE (statmod)
+* installing *binary* package ‘stinepack’ ...
+* DONE (stinepack)
+* installing *binary* package ‘stringi’ ...
+* DONE (stringi)
+* installing *binary* package ‘SuppDists’ ...
+* DONE (SuppDists)
+* installing *binary* package ‘sys’ ...
+* DONE (sys)
+* installing *binary* package ‘timeDate’ ...
+* DONE (timeDate)
+* installing *binary* package ‘utf8’ ...
+* DONE (utf8)
+* installing *binary* package ‘uuid’ ...
+* DONE (uuid)
+* installing *binary* package ‘viridisLite’ ...
+* DONE (viridisLite)
+* installing *binary* package ‘warp’ ...
+* DONE (warp)
+* installing *binary* package ‘whisker’ ...
+* DONE (whisker)
+* installing *binary* package ‘withr’ ...
+* DONE (withr)
+* installing *binary* package ‘wk’ ...
+* DONE (wk)
+* installing *binary* package ‘xfun’ ...
+* DONE (xfun)
+* installing *binary* package ‘xml2’ ...
+* DONE (xml2)
+* installing *binary* package ‘xtable’ ...
+* DONE (xtable)
+* installing *binary* package ‘yaml’ ...
+* DONE (yaml)
+* installing *binary* package ‘zip’ ...
+* DONE (zip)
+* installing *binary* package ‘diagram’ ...
+* DONE (diagram)
+* installing *binary* package ‘anytime’ ...
+* DONE (anytime)
+* installing *binary* package ‘askpass’ ...
+* DONE (askpass)
+* installing *binary* package ‘bit64’ ...
+* DONE (bit64)
+* installing *binary* package ‘cachem’ ...
+* DONE (cachem)
+* installing *binary* package ‘CircStats’ ...
+* DONE (CircStats)
+* installing *binary* package ‘class’ ...
+* DONE (class)
+* installing *binary* package ‘confintr’ ...
+* DONE (confintr)
+* installing *binary* package ‘datawizard’ ...
+* DONE (datawizard)
+* installing *binary* package ‘desc’ ...
+* DONE (desc)
+* installing *binary* package ‘diffobj’ ...
+* DONE (diffobj)
+* installing *binary* package ‘ellipsis’ ...
+* DONE (ellipsis)
+* installing *binary* package ‘emmeans’ ...
+* DONE (emmeans)
+* installing *binary* package ‘foreach’ ...
+* DONE (foreach)
+* installing *binary* package ‘geometries’ ...
+* DONE (geometries)
+* installing *binary* package ‘getPass’ ...
+* DONE (getPass)
+* installing *binary* package ‘ggeffects’ ...
+* DONE (ggeffects)
+* installing *binary* package ‘gh’ ...
+* DONE (gh)
+* installing *binary* package ‘globals’ ...
+* DONE (globals)
+* installing *binary* package ‘here’ ...
+* DONE (here)
+* installing *binary* package ‘hexbin’ ...
+* DONE (hexbin)
+* installing *binary* package ‘highr’ ...
+* DONE (highr)
+* installing *binary* package ‘job’ ...
+* DONE (job)
+* installing *binary* package ‘jqr’ ...
+* DONE (jqr)
+* installing *binary* package ‘jsonify’ ...
+* DONE (jsonify)
+* installing *binary* package ‘kSamples’ ...
+* DONE (kSamples)
+* installing *binary* package ‘L1pack’ ...
+* DONE (L1pack)
+* installing *binary* package ‘later’ ...
+* DONE (later)
+* installing *binary* package ‘lifecycle’ ...
+* DONE (lifecycle)
+* installing *binary* package ‘locfit’ ...
+* DONE (locfit)
+* installing *binary* package ‘mapproj’ ...
+* DONE (mapproj)
+* installing *binary* package ‘markdown’ ...
+* DONE (markdown)
+* installing *binary* package ‘Matrix’ ...
+* DONE (Matrix)
+* installing *binary* package ‘minqa’ ...
+* DONE (minqa)
+* installing *binary* package ‘ModelMetrics’ ...
+* DONE (ModelMetrics)
+* installing *binary* package ‘multicool’ ...
+* DONE (multicool)
+* installing *binary* package ‘munsell’ ...
+* DONE (munsell)
+* installing *binary* package ‘nlme’ ...
+* DONE (nlme)
+* installing *binary* package ‘pacman’ ...
+* DONE (pacman)
+* installing *binary* package ‘pcaPP’ ...
+* DONE (pcaPP)
+* installing *binary* package ‘plot3D’ ...
+* DONE (plot3D)
+* installing *binary* package ‘plyr’ ...
+* DONE (plyr)
+* installing *binary* package ‘processx’ ...
+* DONE (processx)
+* installing *binary* package ‘progressr’ ...
+* DONE (progressr)
+* installing *binary* package ‘protolite’ ...
+* DONE (protolite)
+* installing *binary* package ‘RcppArmadillo’ ...
+* DONE (RcppArmadillo)
+* installing *binary* package ‘RcppRoll’ ...
+* DONE (RcppRoll)
+* installing *binary* package ‘RcppTOML’ ...
+* DONE (RcppTOML)
+* installing *binary* package ‘RCurl’ ...
+* DONE (RCurl)
+* installing *binary* package ‘rlas’ ...
+* DONE (rlas)
+* installing *binary* package ‘robustbase’ ...
+* DONE (robustbase)
+* installing *binary* package ‘rversions’ ...
+* DONE (rversions)
+* installing *binary* package ‘s2’ ...
+* DONE (s2)
+* installing *binary* package ‘sessioninfo’ ...
+* DONE (sessioninfo)
+* installing *binary* package ‘signal’ ...
+* DONE (signal)
+* installing *binary* package ‘sp’ ...
+* DONE (sp)
+* installing *binary* package ‘systemfonts’ ...
+* DONE (systemfonts)
+* installing *binary* package ‘terra’ ...
+* DONE (terra)
+* installing *binary* package ‘timechange’ ...
+* DONE (timechange)
+* installing *binary* package ‘tinytex’ ...
+* DONE (tinytex)
+* installing *binary* package ‘triebeard’ ...
+* DONE (triebeard)
+* installing *binary* package ‘tzdb’ ...
+* DONE (tzdb)
+* installing *binary* package ‘units’ ...
+* DONE (units)
+* installing *binary* package ‘urlchecker’ ...
+* DONE (urlchecker)
+* installing *binary* package ‘V8’ ...
+* DONE (V8)
+* installing *binary* package ‘zoo’ ...
+* DONE (zoo)
+* installing *binary* package ‘bayestestR’ ...
+* DONE (bayestestR)
+* installing *binary* package ‘callr’ ...
+* DONE (callr)
+* installing *binary* package ‘doParallel’ ...
+* DONE (doParallel)
+* installing *binary* package ‘e1071’ ...
+* DONE (e1071)
+* installing *binary* package ‘future’ ...
+* DONE (future)
+* installing *binary* package ‘geojson’ ...
+* DONE (geojson)
+* installing *binary* package ‘gtable’ ...
+* DONE (gtable)
+* installing *source* package ‘hdf5r’ ...
+** package ‘hdf5r’ successfully unpacked and MD5 sums checked
+** using staged installation
+checking for a sed that does not truncate output... /usr/bin/sed
+checking for gawk... no
+checking for mawk... mawk
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables...
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to enable C11 features... none needed
+checking for stdio.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for strings.h... yes
+checking for sys/stat.h... yes
+checking for sys/types.h... yes
+checking for unistd.h... yes
+checking for h5cc... /usr/bin/h5cc
+checking for HDF5 libraries... yes (version 1.10.7)
+checking for hdf5.h... yes
+checking for H5Fcreate in -lhdf5... yes
+checking for hdf5_hl.h... yes
+checking for H5LTpath_valid in -lhdf5_hl... yes
+checking for main in -lhdf5_hl... yes
+checking for matching HDF5 Fortran wrapper... /usr/bin/h5fc
+Found hdf5 with version: 1.10.7
+checking for ggrep... /usr/bin/grep
+checking whether /usr/bin/grep accepts -o... yes
+checking for ggrep... (cached) /usr/bin/grep
+checking whether /usr/bin/grep accepts -o... yes
+Using variables:
+HDF5_LIBS= -L/usr/lib/x86_64-linux-gnu/hdf5/serial  -lcrypto  -lcurl  -lpthread  -lsz  -lz  -ldl  -lm  -L. -lhdf5_hl -lhdf5 -lz -lm
+HDF5_CFLAGS=
+HDF5_CPPFLAGS=-I/usr/include/hdf5/serial
+configure: creating ./config.status
+config.status: creating src/Makevars
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+cp 1_10_3/*.c 1_10_3/*.h .
+if [ "1.10.6" != "" ]; then patch -p2 < patch_1.10.6; fi
+patching file datatype_export.c
+gcc -I"/usr/local/lib/R/include" -DNDEBUG -I/usr/include/hdf5/serial   -I/usr/local/include   -D__USE_MINGW_ANSI_STDIO  -fpic  -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c const_export.c -o const_export.o
+gcc -I"/usr/local/lib/R/include" -DNDEBUG -I/usr/include/hdf5/serial   -I/usr/local/include   -D__USE_MINGW_ANSI_STDIO  -fpic  -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c datatype_export.c -o datatype_export.o
+gcc -I"/usr/local/lib/R/include" -DNDEBUG -I/usr/include/hdf5/serial   -I/usr/local/include   -D__USE_MINGW_ANSI_STDIO  -fpic  -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c Wrapper_auto_H5A.c -o Wrapper_auto_H5A.o
+gcc -I"/usr/local/lib/R/include" -DNDEBUG -I/usr/include/hdf5/serial   -I/usr/local/include   -D__USE_MINGW_ANSI_STDIO  -fpic  -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c Wrapper_auto_H5.c -o Wrapper_auto_H5.o
+gcc -I"/usr/local/lib/R/include" -DNDEBUG -I/usr/include/hdf5/serial   -I/usr/local/include   -D__USE_MINGW_ANSI_STDIO  -fpic  -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c Wrapper_auto_H5D.c -o Wrapper_auto_H5D.o
+gcc -I"/usr/local/lib/R/include" -DNDEBUG -I/usr/include/hdf5/serial   -I/usr/local/include   -D__USE_MINGW_ANSI_STDIO  -fpic  -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c Wrapper_auto_H5DS.c -o Wrapper_auto_H5DS.o
+gcc -I"/usr/local/lib/R/include" -DNDEBUG -I/usr/include/hdf5/serial   -I/usr/local/include   -D__USE_MINGW_ANSI_STDIO  -fpic  -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c Wrapper_auto_H5E.c -o Wrapper_auto_H5E.o
+gcc -I"/usr/local/lib/R/include" -DNDEBUG -I/usr/include/hdf5/serial   -I/usr/local/include   -D__USE_MINGW_ANSI_STDIO  -fpic  -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c Wrapper_auto_H5F.c -o Wrapper_auto_H5F.o
+gcc -I"/usr/local/lib/R/include" -DNDEBUG -I/usr/include/hdf5/serial   -I/usr/local/include   -D__USE_MINGW_ANSI_STDIO  -fpic  -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c Wrapper_auto_H5G.c -o Wrapper_auto_H5G.o
+gcc -I"/usr/local/lib/R/include" -DNDEBUG -I/usr/include/hdf5/serial   -I/usr/local/include   -D__USE_MINGW_ANSI_STDIO  -fpic  -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c Wrapper_auto_H5I.c -o Wrapper_auto_H5I.o
+gcc -I"/usr/local/lib/R/include" -DNDEBUG -I/usr/include/hdf5/serial   -I/usr/local/include   -D__USE_MINGW_ANSI_STDIO  -fpic  -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c Wrapper_auto_H5IM.c -o Wrapper_auto_H5IM.o
+gcc -I"/usr/local/lib/R/include" -DNDEBUG -I/usr/include/hdf5/serial   -I/usr/local/include   -D__USE_MINGW_ANSI_STDIO  -fpic  -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c Wrapper_auto_H5L.c -o Wrapper_auto_H5L.o
+gcc -I"/usr/local/lib/R/include" -DNDEBUG -I/usr/include/hdf5/serial   -I/usr/local/include   -D__USE_MINGW_ANSI_STDIO  -fpic  -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c Wrapper_auto_H5LT.c -o Wrapper_auto_H5LT.o
+gcc -I"/usr/local/lib/R/include" -DNDEBUG -I/usr/include/hdf5/serial   -I/usr/local/include   -D__USE_MINGW_ANSI_STDIO  -fpic  -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c Wrapper_auto_H5O.c -o Wrapper_auto_H5O.o
+gcc -I"/usr/local/lib/R/include" -DNDEBUG -I/usr/include/hdf5/serial   -I/usr/local/include   -D__USE_MINGW_ANSI_STDIO  -fpic  -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c Wrapper_auto_H5P.c -o Wrapper_auto_H5P.o
+gcc -I"/usr/local/lib/R/include" -DNDEBUG -I/usr/include/hdf5/serial   -I/usr/local/include   -D__USE_MINGW_ANSI_STDIO  -fpic  -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c Wrapper_auto_H5R.c -o Wrapper_auto_H5R.o
+gcc -I"/usr/local/lib/R/include" -DNDEBUG -I/usr/include/hdf5/serial   -I/usr/local/include   -D__USE_MINGW_ANSI_STDIO  -fpic  -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c Wrapper_auto_H5S.c -o Wrapper_auto_H5S.o
+gcc -I"/usr/local/lib/R/include" -DNDEBUG -I/usr/include/hdf5/serial   -I/usr/local/include   -D__USE_MINGW_ANSI_STDIO  -fpic  -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c Wrapper_auto_H5TB.c -o Wrapper_auto_H5TB.o
+gcc -I"/usr/local/lib/R/include" -DNDEBUG -I/usr/include/hdf5/serial   -I/usr/local/include   -D__USE_MINGW_ANSI_STDIO  -fpic  -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c Wrapper_auto_H5T.c -o Wrapper_auto_H5T.o
+gcc -I"/usr/local/lib/R/include" -DNDEBUG -I/usr/include/hdf5/serial   -I/usr/local/include   -D__USE_MINGW_ANSI_STDIO  -fpic  -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c Wrapper_auto_H5Z.c -o Wrapper_auto_H5Z.o
+gcc -I"/usr/local/lib/R/include" -DNDEBUG -I/usr/include/hdf5/serial   -I/usr/local/include   -D__USE_MINGW_ANSI_STDIO  -fpic  -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c Wrapper_auto_H5FDcore.c -o Wrapper_auto_H5FDcore.o
+gcc -I"/usr/local/lib/R/include" -DNDEBUG -I/usr/include/hdf5/serial   -I/usr/local/include   -D__USE_MINGW_ANSI_STDIO  -fpic  -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c Wrapper_auto_H5FDfamily.c -o Wrapper_auto_H5FDfamily.o
+gcc -I"/usr/local/lib/R/include" -DNDEBUG -I/usr/include/hdf5/serial   -I/usr/local/include   -D__USE_MINGW_ANSI_STDIO  -fpic  -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c Wrapper_auto_H5FDlog.c -o Wrapper_auto_H5FDlog.o
+gcc -I"/usr/local/lib/R/include" -DNDEBUG -I/usr/include/hdf5/serial   -I/usr/local/include   -D__USE_MINGW_ANSI_STDIO  -fpic  -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c Wrapper_auto_H5FDsec2.c -o Wrapper_auto_H5FDsec2.o
+gcc -I"/usr/local/lib/R/include" -DNDEBUG -I/usr/include/hdf5/serial   -I/usr/local/include   -D__USE_MINGW_ANSI_STDIO  -fpic  -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c Wrapper_auto_H5FDstdio.c -o Wrapper_auto_H5FDstdio.o
+gcc -I"/usr/local/lib/R/include" -DNDEBUG -I/usr/include/hdf5/serial   -I/usr/local/include   -D__USE_MINGW_ANSI_STDIO  -fpic  -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c convert.c -o convert.o
+gcc -I"/usr/local/lib/R/include" -DNDEBUG -I/usr/include/hdf5/serial   -I/usr/local/include   -D__USE_MINGW_ANSI_STDIO  -fpic  -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c hdf5r_init.c -o hdf5r_init.o
+gcc -I"/usr/local/lib/R/include" -DNDEBUG -I/usr/include/hdf5/serial   -I/usr/local/include   -D__USE_MINGW_ANSI_STDIO  -fpic  -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c H5Error.c -o H5Error.o
+gcc -I"/usr/local/lib/R/include" -DNDEBUG -I/usr/include/hdf5/serial   -I/usr/local/include   -D__USE_MINGW_ANSI_STDIO  -fpic  -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c H5ls.c -o H5ls.o
+gcc -I"/usr/local/lib/R/include" -DNDEBUG -I/usr/include/hdf5/serial   -I/usr/local/include   -D__USE_MINGW_ANSI_STDIO  -fpic  -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c Wrapper_manual_H5T.c -o Wrapper_manual_H5T.o
+gcc -shared -L/usr/local/lib/R/lib -L/usr/local/lib -o hdf5r.so const_export.o datatype_export.o Wrapper_auto_H5A.o Wrapper_auto_H5.o Wrapper_auto_H5D.o Wrapper_auto_H5DS.o Wrapper_auto_H5E.o Wrapper_auto_H5F.o Wrapper_auto_H5G.o Wrapper_auto_H5I.o Wrapper_auto_H5IM.o Wrapper_auto_H5L.o Wrapper_auto_H5LT.o Wrapper_auto_H5O.o Wrapper_auto_H5P.o Wrapper_auto_H5R.o Wrapper_auto_H5S.o Wrapper_auto_H5TB.o Wrapper_auto_H5T.o Wrapper_auto_H5Z.o Wrapper_auto_H5FDcore.o Wrapper_auto_H5FDfamily.o Wrapper_auto_H5FDlog.o Wrapper_auto_H5FDsec2.o Wrapper_auto_H5FDstdio.o convert.o hdf5r_init.o H5Error.o H5ls.o Wrapper_manual_H5T.o -L/usr/lib/x86_64-linux-gnu/hdf5/serial -lcrypto -lcurl -lpthread -lsz -lz -ldl -lm -L. -lhdf5_hl -lhdf5 -lz -lm -L/usr/local/lib/R/lib -lR
+installing to /usr/local/lib/R/site-library/00LOCK-hdf5r/00new/hdf5r/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (hdf5r)
+* installing *binary* package ‘htmltools’ ...
+* DONE (htmltools)
+* installing *binary* package ‘knitr’ ...
+* DONE (knitr)
+* installing *binary* package ‘lmtest’ ...
+* DONE (lmtest)
+* installing *binary* package ‘lubridate’ ...
+* DONE (lubridate)
+* installing *binary* package ‘maptools’ ...
+* DONE (maptools)
+* installing *binary* package ‘MatrixModels’ ...
+* DONE (MatrixModels)
+* installing *binary* package ‘memoise’ ...
+* DONE (memoise)
+* installing *binary* package ‘mgcv’ ...
+* DONE (mgcv)
+* installing *binary* package ‘openssl’ ...
+* DONE (openssl)
+* installing *binary* package ‘pkgload’ ...
+* DONE (pkgload)
+* installing *binary* package ‘pROC’ ...
+* DONE (pROC)
+* installing *binary* package ‘promises’ ...
+* DONE (promises)
+* installing *binary* package ‘prospectr’ ...
+* DONE (prospectr)
+* installing *binary* package ‘raster’ ...
+* DONE (raster)
+* installing *binary* package ‘RcppEigen’ ...
+* DONE (RcppEigen)
+* installing *binary* package ‘reshape’ ...
+* DONE (reshape)
+* installing *binary* package ‘reticulate’ ...
+* DONE (reticulate)
+* installing *binary* package ‘rgdal’ ...
+* DONE (rgdal)
+* installing *binary* package ‘rgeos’ ...
+* DONE (rgeos)
+* installing *binary* package ‘RgoogleMaps’ ...
+* DONE (RgoogleMaps)
+* installing *binary* package ‘scales’ ...
+* DONE (scales)
+* installing *binary* package ‘sfheaders’ ...
+* DONE (sfheaders)
+* installing *binary* package ‘sjlabelled’ ...
+* DONE (sjlabelled)
+* installing *binary* package ‘survival’ ...
+* DONE (survival)
+* installing *binary* package ‘svglite’ ...
+* DONE (svglite)
+* installing *binary* package ‘textshaping’ ...
+* DONE (textshaping)
+* installing *binary* package ‘urca’ ...
+* DONE (urca)
+* installing *binary* package ‘urltools’ ...
+* DONE (urltools)
+* installing *binary* package ‘vctrs’ ...
+* DONE (vctrs)
+* installing *binary* package ‘xopen’ ...
+* DONE (xopen)
+* installing *binary* package ‘xts’ ...
+* DONE (xts)
+* installing *binary* package ‘blob’ ...
+* DONE (blob)
+* installing *binary* package ‘classInt’ ...
+* DONE (classInt)
+* installing *binary* package ‘clock’ ...
+* DONE (clock)
+* installing *binary* package ‘credentials’ ...
+* DONE (credentials)
+* installing *binary* package ‘crosstalk’ ...
+* DONE (crosstalk)
+* installing *binary* package ‘crul’ ...
+* DONE (crul)
+* installing *binary* package ‘downlit’ ...
+* DONE (downlit)
+* installing *binary* package ‘fontawesome’ ...
+* DONE (fontawesome)
+* installing *binary* package ‘future.apply’ ...
+* DONE (future.apply)
+* installing *binary* package ‘geojsonsf’ ...
+* DONE (geojsonsf)
+* installing *binary* package ‘gridExtra’ ...
+* DONE (gridExtra)
+* installing *binary* package ‘hms’ ...
+* DONE (hms)
+* installing *binary* package ‘httpuv’ ...
+* DONE (httpuv)
+* installing *binary* package ‘httr’ ...
+* DONE (httr)
+* installing *binary* package ‘ids’ ...
+* DONE (ids)
+* installing *binary* package ‘interp’ ...
+* DONE (interp)
+* installing *binary* package ‘jquerylib’ ...
+* DONE (jquerylib)
+* installing *binary* package ‘ks’ ...
+* DONE (ks)
+* installing *binary* package ‘parameters’ ...
+* DONE (parameters)
+* installing *binary* package ‘performance’ ...
+* DONE (performance)
+* installing *binary* package ‘PerformanceAnalytics’ ...
+* DONE (PerformanceAnalytics)
+* installing *binary* package ‘pillar’ ...
+* DONE (pillar)
+* installing *binary* package ‘pkgbuild’ ...
+* DONE (pkgbuild)
+* installing *binary* package ‘purrr’ ...
+* DONE (purrr)
+* installing *binary* package ‘quantreg’ ...
+* DONE (quantreg)
+* installing *binary* package ‘ragg’ ...
+* DONE (ragg)
+* installing *binary* package ‘ranger’ ...
+* DONE (ranger)
+* installing *binary* package ‘sass’ ...
+* DONE (sass)
+* installing *binary* package ‘satellite’ ...
+* DONE (satellite)
+* installing *binary* package ‘scam’ ...
+* DONE (scam)
+* installing *binary* package ‘slider’ ...
+* DONE (slider)
+* installing *binary* package ‘solartime’ ...
+* DONE (solartime)
+* installing *binary* package ‘stringr’ ...
+* DONE (stringr)
+* installing *binary* package ‘tidyselect’ ...
+* DONE (tidyselect)
+* installing *binary* package ‘TTR’ ...
+* DONE (TTR)
+* installing *binary* package ‘tweenr’ ...
+* DONE (tweenr)
+* installing *binary* package ‘webshot’ ...
+* DONE (webshot)
+* installing *binary* package ‘bigleaf’ ...
+* DONE (bigleaf)
+* installing *binary* package ‘Boruta’ ...
+* DONE (Boruta)
+* installing *binary* package ‘bslib’ ...
+* DONE (bslib)
+* installing *binary* package ‘correlation’ ...
+* DONE (correlation)
+* installing *binary* package ‘effectsize’ ...
+* DONE (effectsize)
+* installing *binary* package ‘furrr’ ...
+* DONE (furrr)
+* installing *binary* package ‘gargle’ ...
+* DONE (gargle)
+* installing *binary* package ‘gert’ ...
+* DONE (gert)
+* installing *binary* package ‘gridtext’ ...
+* DONE (gridtext)
+* installing *binary* package ‘huxtable’ ...
+* DONE (huxtable)
+* installing *binary* package ‘installr’ ...
+* DONE (installr)
+* installing *binary* package ‘latticeExtra’ ...
+* DONE (latticeExtra)
+* installing *binary* package ‘lava’ ...
+* DONE (lava)
+* installing *binary* package ‘odbc’ ...
+* DONE (odbc)
+* installing *binary* package ‘progress’ ...
+* DONE (progress)
+* installing *binary* package ‘Quandl’ ...
+* DONE (Quandl)
+* installing *binary* package ‘quantmod’ ...
+* DONE (quantmod)
+* installing *binary* package ‘rcmdcheck’ ...
+* DONE (rcmdcheck)
+* installing *binary* package ‘reshape2’ ...
+* DONE (reshape2)
+* installing *binary* package ‘roxygen2’ ...
+* DONE (roxygen2)
+* installing *binary* package ‘RSQLite’ ...
+* DONE (RSQLite)
+* installing *binary* package ‘selectr’ ...
+* DONE (selectr)
+* installing *binary* package ‘servr’ ...
+* DONE (servr)
+* installing *binary* package ‘sf’ ...
+* DONE (sf)
+* installing *binary* package ‘texreg’ ...
+* DONE (texreg)
+* installing *binary* package ‘tibble’ ...
+* DONE (tibble)
+* installing *binary* package ‘cellranger’ ...
+* DONE (cellranger)
+* installing *binary* package ‘dplyr’ ...
+* DONE (dplyr)
+* installing *binary* package ‘forcats’ ...
+* DONE (forcats)
+* installing *binary* package ‘ggplot2’ ...
+* DONE (ggplot2)
+* installing *binary* package ‘googleAuthR’ ...
+* DONE (googleAuthR)
+* installing *binary* package ‘googledrive’ ...
+* DONE (googledrive)
+* installing *binary* package ‘hardhat’ ...
+* DONE (hardhat)
+* installing *binary* package ‘lwgeom’ ...
+* DONE (lwgeom)
+* installing *binary* package ‘modelbased’ ...
+* DONE (modelbased)
+* installing *binary* package ‘prodlim’ ...
+* DONE (prodlim)
+* installing *binary* package ‘rasterVis’ ...
+* DONE (rasterVis)
+* installing *binary* package ‘rematch2’ ...
+* DONE (rematch2)
+* installing *binary* package ‘riingo’ ...
+* DONE (riingo)
+* installing *binary* package ‘rmarkdown’ ...
+* DONE (rmarkdown)
+* installing *binary* package ‘rvest’ ...
+* DONE (rvest)
+* installing *binary* package ‘shiny’ ...
+* DONE (shiny)
+* installing *binary* package ‘tseries’ ...
+* DONE (tseries)
+* installing *binary* package ‘usethis’ ...
+* DONE (usethis)
+* installing *binary* package ‘vroom’ ...
+* DONE (vroom)
+* installing *binary* package ‘bookdown’ ...
+* DONE (bookdown)
+* installing *binary* package ‘clifro’ ...
+* DONE (clifro)
+* installing *binary* package ‘ClusterR’ ...
+* DONE (ClusterR)
+* installing *binary* package ‘cowplot’ ...
+* DONE (cowplot)
+* installing *binary* package ‘dtplyr’ ...
+* DONE (dtplyr)
+* installing *binary* package ‘forecast’ ...
+* DONE (forecast)
+* installing *binary* package ‘gganimate’ ...
+* DONE (gganimate)
+* installing *binary* package ‘ggh4x’ ...
+* DONE (ggh4x)
+* installing *binary* package ‘ggpp’ ...
+* DONE (ggpp)
+* installing *binary* package ‘ggridges’ ...
+* DONE (ggridges)
+* installing *binary* package ‘ggtext’ ...
+* DONE (ggtext)
+* installing *binary* package ‘googleCloudStorageR’ ...
+* DONE (googleCloudStorageR)
+* installing *binary* package ‘googlesheets4’ ...
+* DONE (googlesheets4)
+* installing *binary* package ‘hdrcde’ ...
+* DONE (hdrcde)
+* installing *binary* package ‘htmlwidgets’ ...
+* DONE (htmlwidgets)
+* installing *binary* package ‘ipred’ ...
+* DONE (ipred)
+* installing *binary* package ‘miniUI’ ...
+* DONE (miniUI)
+* installing *binary* package ‘padr’ ...
+* DONE (padr)
+* installing *binary* package ‘patchwork’ ...
+* DONE (patchwork)
+* installing *binary* package ‘pkgdown’ ...
+* DONE (pkgdown)
+* installing *binary* package ‘readr’ ...
+* DONE (readr)
+* installing *binary* package ‘readxl’ ...
+* DONE (readxl)
+* installing *binary* package ‘reprex’ ...
+* DONE (reprex)
+* installing *binary* package ‘see’ ...
+* DONE (see)
+* installing *binary* package ‘shinyjs’ ...
+* DONE (shinyjs)
+* installing *binary* package ‘sjmisc’ ...
+* DONE (sjmisc)
+* installing *binary* package ‘stars’ ...
+* DONE (stars)
+* installing *binary* package ‘tidyr’ ...
+* DONE (tidyr)
+* installing *binary* package ‘tsibble’ ...
+* DONE (tsibble)
+* installing *binary* package ‘viridis’ ...
+* DONE (viridis)
+* installing *binary* package ‘waldo’ ...
+* DONE (waldo)
+* installing *binary* package ‘broom’ ...
+* DONE (broom)
+* installing *binary* package ‘colourpicker’ ...
+* DONE (colourpicker)
+* installing *binary* package ‘dbplyr’ ...
+* DONE (dbplyr)
+* installing *binary* package ‘geojsonio’ ...
+* DONE (geojsonio)
+* installing *binary* package ‘ggmap’ ...
+* DONE (ggmap)
+* installing *binary* package ‘ggpmisc’ ...
+* DONE (ggpmisc)
+* installing *binary* package ‘haven’ ...
+* DONE (haven)
+* installing *binary* package ‘imputeTS’ ...
+* DONE (imputeTS)
+* installing *binary* package ‘leaflet’ ...
+* DONE (leaflet)
+* installing *binary* package ‘leafpop’ ...
+* DONE (leafpop)
+* installing *binary* package ‘Mcomp’ ...
+* DONE (Mcomp)
+* installing *binary* package ‘plotly’ ...
+* DONE (plotly)
+* installing *binary* package ‘profvis’ ...
+* DONE (profvis)
+* installing *binary* package ‘rainbow’ ...
+* DONE (rainbow)
+* installing *binary* package ‘recipes’ ...
+* DONE (recipes)
+* installing *binary* package ‘REddyProc’ ...
+* DONE (REddyProc)
+* installing *binary* package ‘rgl’ ...
+* DONE (rgl)
+* installing *binary* package ‘rsample’ ...
+* DONE (rsample)
+* installing *binary* package ‘spatialRF’ ...
+* DONE (spatialRF)
+* installing *binary* package ‘testthat’ ...
+* DONE (testthat)
+* installing *binary* package ‘tsfeatures’ ...
+* DONE (tsfeatures)
+* installing *binary* package ‘caret’ ...
+* DONE (caret)
+* installing *binary* package ‘devtools’ ...
+* DONE (devtools)
+* installing *binary* package ‘fds’ ...
+* DONE (fds)
+* installing *binary* package ‘ggExtra’ ...
+* DONE (ggExtra)
+* installing *binary* package ‘leafem’ ...
+* DONE (leafem)
+* installing *binary* package ‘leafsync’ ...
+* DONE (leafsync)
+* installing *binary* package ‘lidR’ ...
+* DONE (lidR)
+* installing *binary* package ‘modelr’ ...
+* DONE (modelr)
+* installing *binary* package ‘nloptr’ ...
+* DONE (nloptr)
+* installing *binary* package ‘timetk’ ...
+* DONE (timetk)
+* installing *binary* package ‘alphavantager’ ...
+* DONE (alphavantager)
+* installing *binary* package ‘fda’ ...
+* DONE (fda)
+* installing *binary* package ‘greybox’ ...
+* DONE (greybox)
+* installing *binary* package ‘hsdar’ ...
+* DONE (hsdar)
+* installing *binary* package ‘lme4’ ...
+* DONE (lme4)
+* installing *binary* package ‘mapview’ ...
+* DONE (mapview)
+* installing *binary* package ‘rgee’ ...
+* DONE (rgee)
+* installing *binary* package ‘tidyverse’ ...
+* DONE (tidyverse)
+* installing *binary* package ‘fda.usc’ ...
+* DONE (fda.usc)
+* installing *binary* package ‘sjstats’ ...
+* DONE (sjstats)
+* installing *binary* package ‘smooth’ ...
+* DONE (smooth)
+* installing *binary* package ‘tidyquant’ ...
+* DONE (tidyquant)
+* installing *binary* package ‘trackeR’ ...
+* DONE (trackeR)
+* installing *binary* package ‘sjPlot’ ...
+* DONE (sjPlot)
+
+The downloaded source packages are in
+        ‘/tmp/RtmplFEiVw/downloaded_packages’
+Warning messages:
+1: packages ‘base’, ‘compiler’, ‘datasets’, ‘graphics’, ‘grDevices’, ‘grid’, ‘methods’, ‘parallel’, ‘splines’, ‘stats’, ‘stats4’, ‘tcltk’, ‘tools’, ‘utils’ are base packages, and should not be updated
+2: packages ‘arcgisbinding’, ‘translations’ are not available for this version of R
+
+Versions of these packages for your version of R might be available elsewhere,
+see the ideas at
+https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages
+Removing intermediate container 885dbb60cac0
+ ---> e302a7fa8d76
+Step 7/7 : CMD [ "/bin/bash" ]
+ ---> Running in f4599df7d9e8
+Removing intermediate container f4599df7d9e8
+ ---> b02672b0e77d
+
+Successfully built b02672b0e77d
+Creating container…
+Container Id: e194dddb980e6b836c50f990e30a20fa740e9e83cf9a61349685e2612bd0a4ef
+Container name: '/quirky_mendeleev'
+Starting container '/quirky_mendeleev'
+'<unknown> Dockerfile: Dockerfile' has been deployed successfully.
+
+
